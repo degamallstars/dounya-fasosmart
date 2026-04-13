@@ -1,85 +1,11 @@
 <!DOCTYPE html>
 <!--
   ============================================================
-  DOUNYA FASOSMART — Homepage (index.html)
+  DOUNYA FASOSMART — Homepage (index.html) v2.1 — Production
   ============================================================
-  PRODUCT OVERVIEW
-  ----------------
-  Dounya FasoSmart is an escrow-based skilled-labor marketplace
-  operating in Ouagadougou, Burkina Faso. It solves a specific
-  trust problem in the informal construction sector: clients
-  pay upfront and get abandoned; workers do the work and don't
-  get paid. FasoSmart acts as a neutral financial guarantor
-  (séquestre / escrow) holding funds via Orange Money or Wave
-  until both parties confirm completion.
-
-  TERMINOLOGY POLICY
-  ------------------
-  The word "artisan" is PROHIBITED in all user-facing text.
-  Use "ouvrier qualifié" exclusively. This conveys institutional
-  credibility and professional standing appropriate for a
-  managed marketplace. Internal file references (artisans.html)
-  are retained for URL stability only.
-
-  TARGET AUDIENCES (3 distinct groups, all addressed on this page)
-  ----------------------------------------------------------------
-  1. LOCAL CLIENTS     — Ouagadougou residents needing verified
-                         tradespeople for construction or repair.
-  2. DIASPORA CLIENTS  — Burkinabè living in France/Belgium/etc
-                         managing property or construction back
-                         home remotely. Highest average basket.
-  3. OUVRIERS QUALIFIÉS — Masons, plumbers, electricians etc.
-                         seeking guaranteed payment and a
-                         verifiable public reputation system.
-
-  REVENUE MODEL
-  -------------
-  - 2 000 CFA diagnostic fee (deducted from final invoice)
-  - 8% commission on final validated invoice amount
-  - Paid only at fund release (zero cost if job falls through)
-  - Worker access is permanently free (supply-side lock-in)
-
-  ESCROW RELEASE PROTOCOL
-  -----------------------
-  - Milestone-based: 80% released at major completion milestones
-  - Final 20% released upon client's definitive validation
-  - Dispute window: 48h after milestone notification
-
-  TECHNOLOGY STACK (frontend)
-  ---------------------------
-  - Tailwind CSS via CDN (JIT browser mode) — no build step
-  - Google Fonts: Poppins (headings), Inter (body)
-  - Material Symbols Outlined (Google icon variable font)
-  - AOS v2.3.1 (Animate On Scroll — scroll reveal animations)
-  - global.js: WhatsApp FAB, reference ID generation,
-    low-data mode persistence, service worker registration
-  - No framework, no bundler — pure static HTML/CSS/JS
-
-  DEPLOYMENT
-  ----------
-  - Hosted on Vercel (static site, auto-deploy from GitHub)
-  - Repository: github.com/degamallstars/DounyaFasoSmart_website_Test
-  - Service Worker (sw.js) enables offline asset caching
-
-  COLOR PALETTE (Tailwind custom tokens defined in config below)
-  --------------------------------------------------------------
-  primary       #1B650C  Forest green — brand / trust / CTA
-  primary-dark  #144D09  Deeper green for gradient ends
-  primary-light #EBF5E8  Pale green for chips and soft fills
-  gold          #B8860B  Dark goldenrod — premium / elite tier
-  gold-light    #FDF6E3  Soft gold background fills
-  surface       #FAF9F5  Warm off-white page background
-  on-surface    #1C1C1C  Near-black body text
-  on-muted      #535353  Secondary / caption grey text
-  outline       #DEDCD4  Warm grey border color
-  error         #BA1A1A  Red for problem/warning states
-
-  PLACEHOLDER VALUES (must update before go-live)
-  ------------------------------------------------
-  Phone:   +226 25 30 00 00
-  Email:   contact@fasosmart.bf
-  Address: Ave de l'Indépendance, Ouagadougou
-  WhatsApp link: wa.me/22625300000
+  TERMINOLOGY: "ouvrier qualifié" exclusively. Zero "artisan".
+  MONETIZATION: 2 000 CFA diagnostic + 8 % commission at release.
+  NO chatbot/robot language — human agents only.
   ============================================================
 -->
 <html lang="fr">
@@ -88,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Dounya FasoSmart | Trouvez un ouvrier qualifié vérifié. Paiement sécurisé.</title>
-<meta name="description" content="Dounya FasoSmart connecte les ouvriers qualifiés vérifiés aux clients sérieux au Burkina Faso — Dépôt de garantie via Orange Money.">
+<meta name="description" content="Dounya FasoSmart met en relation les ouvriers qualifiés vérifiés et les clients sérieux au Burkina Faso — Dépôt de garantie via Orange Money.">
 <meta property="og:title" content="Dounya FasoSmart | Ouvriers qualifiés vérifiés, paiement sécurisé">
 <meta property="og:description" content="Trouvez un ouvrier qualifié fiable pour vos travaux. Paiement sécurisé jusqu'à validation. Suivi terrain garanti.">
 <meta property="og:image" content="og-image.png">
@@ -99,12 +25,10 @@
 <link rel="manifest" href="manifest.json">
 <link rel="canonical" href="https://fasosmart.bf/">
 
-<!-- PRECONNECT — reduce DNS + TLS latency for critical CDN origins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet"/>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -151,35 +75,20 @@ tailwind.config = {
   .base-card:hover { border-color: #1B650C; box-shadow: 0 10px 25px -5px rgba(27, 101, 12, 0.1), 0 8px 10px -6px rgba(27, 101, 12, 0.1); }
 
   #mobile-menu { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
-  #mobile-menu.hidden { transform: translateY(-10px); opacity: 0; pointer-events: none; display: none; }
-  #mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; display: block; }
+  #mobile-menu.menu-closed { transform: translateY(-10px); opacity: 0; pointer-events: none; display: none; }
+  #mobile-menu.menu-open { transform: translateY(0); opacity: 1; pointer-events: all; display: block; }
 
   .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
-  .faq-item.open .faq-answer { max-height: 400px; padding-bottom: 1.5rem; }
+  .faq-item.open .faq-answer { max-height: 500px; padding-bottom: 1.5rem; }
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-arrow { transition: transform 0.3s ease; }
 
-  /*
-    LOW DATA MODE — PRODUCTION OPTIMIZATION
-    When active: <body> receives class "low-data-mode".
-    Effects:
-    - All <img> except the logo are hidden (display:none)
-    - Background images via inline style are removed
-    - .image-placeholder divs become visible
-    - AOS scroll animations are bypassed
-    - <picture> and <source> elements hidden to prevent preloading
-    CRITICAL: CSS display:none does NOT prevent <img> from loading.
-    The JS handler below removes src/srcset attributes entirely
-    and restores them when mode is deactivated. This is the only
-    way to achieve real bandwidth savings on 2G/EDGE connections.
-  */
+  /* LOW DATA MODE — strips src attributes via JS for real savings */
   body.low-data-mode img:not([data-keep]) { display: none !important; }
   body.low-data-mode picture, body.low-data-mode source { display: none !important; }
   body.low-data-mode .image-placeholder { display: flex !important; background: #EEEADE; border-radius: 2rem; align-items: center; justify-content: center; min-height: 250px; }
   body.low-data-mode [data-aos] { transform: none !important; opacity: 1 !important; transition: none !important; }
-  body.low-data-mode .bg-hero-pattern { background-image: none !important; }
 
-  /* Reference ID badge — highly visible tracking indicator */
   .ref-id-badge {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 10px 18px; border-radius: 12px;
@@ -190,6 +99,61 @@ tailwind.config = {
   }
   .ref-id-badge .ref-prefix { color: #535353; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; }
 </style>
+
+<!--
+  FIX: Mobile menu JS is placed BEFORE AOS and all other scripts.
+  This guarantees the burger button works even if AOS CDN fails
+  to load (common on 2G/EDGE in Ouagadougou). Previously, AOS.init()
+  failing would crash the entire script block, killing the menu.
+-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // ── MOBILE MENU (runs first, no dependencies) ──────────────
+  var menuBtn = document.getElementById('menu-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isOpen = mobileMenu.classList.contains('menu-open');
+      if (isOpen) {
+        mobileMenu.classList.remove('menu-open');
+        mobileMenu.classList.add('menu-closed');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      } else {
+        mobileMenu.classList.remove('menu-closed');
+        mobileMenu.classList.add('menu-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
+      }
+    });
+
+    // Close menu when tapping a link inside it
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('menu-open');
+        mobileMenu.classList.add('menu-closed');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      });
+    });
+
+    // Close menu when tapping outside
+    document.addEventListener('click', function(e) {
+      if (mobileMenu.classList.contains('menu-open') &&
+          !mobileMenu.contains(e.target) &&
+          !menuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('menu-open');
+        mobileMenu.classList.add('menu-closed');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+      }
+    });
+  }
+});
+</script>
 </head>
 <body class="overflow-x-hidden antialiased">
 
@@ -214,7 +178,7 @@ tailwind.config = {
         </button>
         <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
           <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
-            <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients Locaux</a>
+            <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients locaux</a>
             <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
             <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
           </div>
@@ -225,7 +189,7 @@ tailwind.config = {
       <a href="contact.html" class="text-on-muted hover:text-primary transition-colors">Contact</a>
     </div>
 
-    <!-- DESKTOP UTILITY: Low Data toggle + WhatsApp CTA -->
+    <!-- DESKTOP: Low Data + WhatsApp CTA -->
     <div class="hidden md:flex items-center gap-5">
       <label class="flex items-center cursor-pointer gap-2" title="Mode économie de données — désactive le chargement des images pour les connexions lentes">
         <input type="checkbox" id="low-data-toggle" class="sr-only peer">
@@ -236,31 +200,39 @@ tailwind.config = {
       <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
          target="_blank" rel="noopener"
          class="bg-[#25D366] text-white text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 hover:bg-[#1fba58] transition-colors">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.913.913l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.357 0-4.542-.813-6.262-2.172l-.438-.348-3.165 1.061 1.061-3.165-.348-.438A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.913.913l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.357 0-4.542-.813-6.262-2.172l-.438-.348-3.165 1.061 1.061-3.165-.348-.438A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
         WhatsApp
       </a>
     </div>
 
-    <!-- MOBILE HAMBURGER -->
-    <button id="menu-toggle" class="md:hidden text-on-surface p-2" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+    <!--
+      MOBILE HAMBURGER — min-w-[48px] min-h-[48px] guarantees
+      a 48×48px tap target per WCAG 2.5.5 (mobile touch minimum).
+      Previously p-2 was too small for reliable finger taps.
+    -->
+    <button id="menu-toggle" class="md:hidden text-on-surface min-w-[48px] min-h-[48px] flex items-center justify-center rounded-lg active:bg-primary-light transition-colors" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="material-symbols-outlined text-3xl">menu</span>
     </button>
   </div>
 
-  <!-- MOBILE MENU -->
-  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-outline shadow-xl px-6 py-6 z-50">
+  <!--
+    MOBILE MENU — class "menu-closed" replaces "hidden" to avoid
+    conflict with Tailwind's built-in "hidden" utility class.
+    This was the root cause of the non-responsive burger menu.
+  -->
+  <div id="mobile-menu" class="menu-closed md:hidden absolute top-full left-0 w-full bg-white border-b border-outline shadow-xl px-6 py-6 z-50">
     <div class="flex flex-col gap-4 font-semibold text-sm">
-      <a href="index.html" class="text-primary">Accueil</a>
-      <a href="fonctionnement.html" class="text-on-muted">Fonctionnement</a>
-      <a href="clients.html" class="text-on-muted">Clients Locaux</a>
-      <a href="diaspora.html" class="text-on-muted">Diaspora</a>
-      <a href="artisans.html" class="text-on-muted">Ouvriers qualifiés</a>
-      <a href="tarifs.html" class="text-on-muted">Tarifs</a>
-      <a href="contact.html" class="text-on-muted">Contact</a>
+      <a href="index.html" class="text-primary py-2">Accueil</a>
+      <a href="fonctionnement.html" class="text-on-muted py-2">Fonctionnement</a>
+      <a href="clients.html" class="text-on-muted py-2">Clients locaux</a>
+      <a href="diaspora.html" class="text-on-muted py-2">Diaspora</a>
+      <a href="artisans.html" class="text-on-muted py-2">Ouvriers qualifiés</a>
+      <a href="tarifs.html" class="text-on-muted py-2">Tarifs</a>
+      <a href="contact.html" class="text-on-muted py-2">Contact</a>
       <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
          target="_blank" rel="noopener"
-         class="bg-[#25D366] text-white text-center font-bold py-3 rounded-xl">
-        Démarrer sur WhatsApp
+         class="bg-[#25D366] text-white text-center font-bold py-3 rounded-xl mt-2">
+        Écrire à notre équipe sur WhatsApp
       </a>
     </div>
   </div>
@@ -283,7 +255,7 @@ tailwind.config = {
     </h1>
 
     <p class="text-lg md:text-xl text-on-muted mb-8 max-w-lg">
-      Dounya FasoSmart connecte les ouvriers qualifiés vérifiés aux clients sérieux au Burkina Faso — avec dépôt de garantie via Orange Money et suivi rigoureux sur le terrain.
+      Dounya FasoSmart met en relation les ouvriers qualifiés vérifiés et les clients sérieux au Burkina Faso — avec dépôt de garantie via Orange Money et suivi rigoureux sur le terrain.
     </p>
 
     <!-- REFERENCE ID — visually prominent tracking badge -->
@@ -295,7 +267,7 @@ tailwind.config = {
           <span id="hero-ref-id">DS-PRO-26-0000</span>
         </span>
       </div>
-      <p class="text-[0.65rem] text-on-muted mt-2 ml-1">Chaque demande reçoit un identifiant unique pour un suivi transparent.</p>
+      <p class="text-[0.65rem] text-on-muted mt-2 ml-1">Chaque demande reçoit un identifiant unique pour un suivi transparent de bout en bout.</p>
     </div>
 
     <div class="flex flex-col sm:flex-row gap-4 mb-6">
@@ -303,16 +275,16 @@ tailwind.config = {
          target="_blank" rel="noopener"
          class="bg-[#25D366] text-white font-bold text-sm px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-2">
         <span class="material-symbols-outlined text-[20px]">chat</span>
-        Trouver un ouvrier qualifié
+        Trouver mon ouvrier qualifié
       </a>
       <a href="artisans.html" class="bg-white border-2 border-primary/20 text-on-muted font-bold text-sm px-6 py-4 rounded-xl hover:bg-primary-light hover:text-primary transition-all text-center">
-        Je suis un ouvrier qualifié
+        Je suis ouvrier qualifié
       </a>
     </div>
 
     <div class="flex items-center gap-2 text-xs font-semibold text-on-surface">
       <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
-      Dépôt de garantie sécurisé • Experts vérifiés sur le terrain • Aucun frais caché
+      Dépôt de garantie sécurisé • Experts vérifiés sur le terrain • Sans frais cachés
     </div>
   </div>
 
@@ -337,7 +309,7 @@ tailwind.config = {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     SECTION 2 — TRUST BAR (Social Proof Metrics)
+     SECTION 2 — TRUST BAR
      ════════════════════════════════════════════════════════════ -->
 <section class="bg-surface-mid border-y border-outline py-8" data-aos="fade-in">
   <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -367,7 +339,7 @@ tailwind.config = {
   <div class="max-w-6xl mx-auto px-6 text-center">
     <div class="chip bg-on-surface text-white mb-6">Le problème</div>
     <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">La confiance, construite en béton.</h2>
-    <p class="text-on-muted mb-12 max-w-xl mx-auto">Trouver un ouvrier qualifié fiable à Ouagadougou reste souvent incertain. Dounya FasoSmart apporte la sécurité nécessaire.</p>
+    <p class="text-on-muted mb-12 max-w-xl mx-auto">Trouver un professionnel fiable à Ouagadougou reste souvent un pari. Dounya FasoSmart apporte la sécurité qui manque.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
       <div class="base-card border-l-4 border-l-error">
@@ -386,8 +358,8 @@ tailwind.config = {
           <span class="material-symbols-outlined">shield</span> Avec Dounya FasoSmart
         </h3>
         <ul class="space-y-4 text-on-muted">
-          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Ouvrier qualifié vérifié physiquement par nos agents terrain.</li>
-          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Dépôt de garantie : votre paiement est protégé jusqu'à votre validation finale.</li>
+          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Chaque professionnel est vérifié physiquement par nos agents terrain.</li>
+          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Votre paiement est protégé par un dépôt de garantie jusqu'à validation finale.</li>
           <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Rapports photo réguliers et prise en charge rapide en cas de litige.</li>
         </ul>
       </div>
@@ -396,16 +368,42 @@ tailwind.config = {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     SECTION 4 — ESCROW PAYMENT FLOW (Dark Section)
-     Includes 80/20 milestone release protocol explanation.
+     SECTION 4 — ESCROW FLOW (Dark Section)
+     MONETIZATION MODEL — ONE clear model, no contradictions:
+     → 2 000 CFA diagnostic (déduit du montant final)
+     → 8 % de commission prélevée à la libération des fonds
+     → Ouvriers qualifiés : inscription 100 % gratuite
+     → Pas de frais séparés "professionnel 2 % / client 3 %"
      ════════════════════════════════════════════════════════════ -->
 <section class="bg-[#1C1C1C] text-white py-24" data-aos="fade-up">
   <div class="max-w-7xl mx-auto px-6">
     <div class="chip bg-white/10 text-white mb-6">Sécurité financière</div>
     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 max-w-2xl">Votre argent est protégé. À chaque étape.</h2>
-    <p class="text-white/60 mb-6 max-w-xl">Commission de 8 % uniquement à la libération des fonds. Zéro frais caché.</p>
 
-    <!-- 80/20 ESCROW RELEASE PROTOCOL — legally safe, commercially clear -->
+    <!-- CLEAR PRICING BLOCK — eliminates all ambiguity -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 max-w-2xl">
+      <h3 class="font-bold text-base mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">payments</span>
+        Tarification transparente
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+        <div class="bg-white/5 rounded-xl p-4 text-center">
+          <div class="font-display font-extrabold text-2xl text-white mb-1">2 000 <span class="text-sm font-body font-normal text-white/60">CFA</span></div>
+          <p class="text-white/70 text-xs">Diagnostic terrain<br><span class="text-white/40">(déduit du montant final)</span></p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-4 text-center">
+          <div class="font-display font-extrabold text-2xl text-white mb-1">8 <span class="text-sm font-body font-normal text-white/60">%</span></div>
+          <p class="text-white/70 text-xs">Commission de service<br><span class="text-white/40">(prélevée à la libération)</span></p>
+        </div>
+        <div class="bg-white/5 rounded-xl p-4 text-center">
+          <div class="font-display font-extrabold text-2xl text-primary mb-1">0 <span class="text-sm font-body font-normal text-white/60">CFA</span></div>
+          <p class="text-white/70 text-xs">Pour les ouvriers qualifiés<br><span class="text-white/40">(inscription gratuite à vie)</span></p>
+        </div>
+      </div>
+      <p class="text-[0.7rem] text-white/40 mt-4 italic">Il n'existe aucun autre frais. Pas d'abonnement, pas de frais de dossier, pas de prélèvement séparé sur le professionnel.</p>
+    </div>
+
+    <!-- 80/20 ESCROW PROTOCOL -->
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-16 max-w-2xl">
       <div class="flex items-start gap-4">
         <div class="bg-primary/20 p-2 rounded-full flex-shrink-0 mt-1">
@@ -413,47 +411,44 @@ tailwind.config = {
         </div>
         <div>
           <h3 class="font-bold text-base mb-2">Protocole de libération par étapes</h3>
-          <p class="text-sm text-white/70 mb-3">Vos fonds sont conservés sur un compte Orange Money dédié, distinct du compte de l'ouvrier qualifié. La libération se fait par étapes vérifiées :</p>
+          <p class="text-sm text-white/70 mb-3">Vos fonds sont conservés sur un compte marchand Orange Money dédié, distinct du compte du professionnel. La libération se fait par étapes vérifiées :</p>
           <div class="space-y-2 text-sm">
             <div class="flex items-center gap-3">
               <span class="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[40px] text-center">80 %</span>
-              <span class="text-white/80">Libérés à la validation des étapes clés du chantier (fondations, élévation, finitions).</span>
+              <span class="text-white/80">Libérés progressivement à la validation des étapes clés du chantier.</span>
             </div>
             <div class="flex items-center gap-3">
               <span class="bg-gold text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[40px] text-center">20 %</span>
               <span class="text-white/80">Retenus jusqu'à votre validation définitive. Vous confirmez, les fonds sont versés sous 48 h.</span>
             </div>
           </div>
-          <p class="text-[0.7rem] text-white/40 mt-3 italic">Les fonds transitent exclusivement par un compte marchand Orange Money/Wave agréé. Dounya FasoSmart intervient en qualité de mandataire de validation, et non de dépositaire.</p>
+          <p class="text-[0.7rem] text-white/40 mt-3 italic">Les fonds transitent par un compte marchand agréé. Dounya FasoSmart intervient en qualité de mandataire de validation, et non de dépositaire de fonds.</p>
         </div>
       </div>
     </div>
 
+    <!-- 4-STEP FLOW -->
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
       <div class="hidden md:block absolute top-[40px] left-0 w-full h-[2px] border-t-2 border-dashed border-white/20 z-0"></div>
 
-      <!-- STEP 1 -->
       <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10" data-aos="fade-up">
         <div class="w-12 h-12 rounded-full bg-primary mb-4 flex items-center justify-center text-xl font-bold font-display">1</div>
         <h3 class="font-bold text-base mb-3">Besoin défini</h3>
-        <p class="text-sm text-white/70">Décrivez votre besoin sur WhatsApp. Nous identifions l'ouvrier qualifié adapté à votre projet.</p>
+        <p class="text-sm text-white/70">Décrivez votre besoin sur WhatsApp. <strong class="text-white/90">Nos agents</strong> identifient le professionnel adapté à votre projet.</p>
       </div>
 
-      <!-- STEP 2 -->
       <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
         <div class="w-12 h-12 rounded-full bg-orange-700/80 mb-4 flex items-center justify-center text-xl font-bold font-display">2</div>
         <h3 class="font-bold text-base mb-3">Dépôt sécurisé</h3>
         <p class="text-sm text-white/70">Le montant convenu est sécurisé sous dépôt de garantie via Orange Money ou Wave.</p>
       </div>
 
-      <!-- STEP 3 -->
       <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
         <div class="w-12 h-12 rounded-full bg-primary mb-4 flex items-center justify-center text-xl font-bold font-display">3</div>
         <h3 class="font-bold text-base mb-3">Suivi actif</h3>
-        <p class="text-sm text-white/70">Le chantier avance avec des preuves visuelles. Nos agents vérifient la conformité. 80 % libérés par étape.</p>
+        <p class="text-sm text-white/70">Le chantier avance avec des preuves visuelles. <strong class="text-white/90">Nos agents terrain</strong> vérifient la conformité. 80 % libérés par étape.</p>
       </div>
 
-      <!-- STEP 4 -->
       <div class="bg-[#1B650C] p-6 rounded-2xl relative z-10 border border-white/20 shadow-xl shadow-primary/20" data-aos="fade-up" data-aos-delay="300">
         <div class="w-12 h-12 rounded-full bg-white text-primary mb-4 flex items-center justify-center text-xl font-bold font-display">4</div>
         <h3 class="font-bold text-base mb-3">Validation et libération</h3>
@@ -464,7 +459,7 @@ tailwind.config = {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     SECTION 5 — TRUST TIERS (4 Certification Levels)
+     SECTION 5 — TRUST TIERS
      ════════════════════════════════════════════════════════════ -->
 <section class="max-w-7xl mx-auto px-6 py-20" data-aos="fade-up">
   <div class="text-center mb-12">
@@ -473,25 +468,21 @@ tailwind.config = {
     <p class="text-on-muted max-w-xl mx-auto">Chaque ouvrier qualifié progresse selon ses résultats réels, validés par nos clients et nos agents terrain.</p>
   </div>
   <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-
     <div class="base-card text-center">
       <div class="text-3xl mb-3">🔰</div>
       <h4 class="font-bold text-on-surface mb-1">Membre</h4>
       <p class="text-xs text-on-muted">Inscrit, identité déclarée</p>
     </div>
-
     <div class="base-card text-center border-primary/30">
       <div class="text-3xl mb-3">✅</div>
       <h4 class="font-bold text-primary mb-1">Vérifié</h4>
       <p class="text-xs text-on-muted">Visite terrain et CNIB vérifiée</p>
     </div>
-
     <div class="base-card text-center border-gold/40">
       <div class="text-3xl mb-3">⭐</div>
       <h4 class="font-bold text-gold mb-1">ProSûr</h4>
       <p class="text-xs text-on-muted">Plus de 5 chantiers sans litige</p>
     </div>
-
     <div class="base-card text-center border-gold/60 bg-gold-light">
       <div class="text-3xl mb-3">🏆</div>
       <h4 class="font-bold text-gold mb-1">ProSûr Élite</h4>
@@ -502,14 +493,13 @@ tailwind.config = {
 
 <!-- ════════════════════════════════════════════════════════════
      SECTION 5b — TRUST & EXECUTION LOOP
-     Visual representation of the Unified Execution Engine:
-     Demande → Diagnostic → Sélection → Contrôle → Paiement → Validation
+     Emphasizes HUMAN agents at every step — no chatbot/robot
      ════════════════════════════════════════════════════════════ -->
 <section class="bg-surface-low py-16" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <div class="chip bg-primary-light text-primary mb-6">Processus vérifié</div>
-    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-4">La boucle de confiance et d'exécution</h2>
-    <p class="text-on-muted mb-10 max-w-xl mx-auto text-sm">Chaque mission suit un processus structuré de bout en bout. Aucune étape n'est laissée au hasard.</p>
+    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-4">Un accompagnement humain, de bout en bout</h2>
+    <p class="text-on-muted mb-10 max-w-xl mx-auto text-sm">Chaque mission est suivie personnellement par nos agents. Pas de réponse automatique : un interlocuteur dédié vous accompagne à chaque étape.</p>
 
     <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
       <div class="flex flex-col items-center">
@@ -531,7 +521,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-white text-2xl">handshake</span>
         </div>
         <p class="text-xs font-bold text-on-surface">Sélection</p>
-        <p class="text-[0.6rem] text-on-muted">Ouvrier adapté</p>
+        <p class="text-[0.6rem] text-on-muted">Par nos agents</p>
       </div>
       <div class="flex flex-col items-center">
         <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-3">
@@ -564,7 +554,7 @@ tailwind.config = {
 <section class="py-16" data-aos="fade-up">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-3 text-center">Services disponibles</h2>
-    <p class="text-on-muted text-center mb-10 text-sm">Phase 1 — Ouagadougou. D'autres corps de métier à venir.</p>
+    <p class="text-on-muted text-center mb-10 text-sm">Phase 1 — Ouagadougou. D'autres corps de métier seront ajoutés progressivement.</p>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
       <div class="bg-white p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-3 transition-all hover:border-primary hover:shadow-md">
         <span class="material-symbols-outlined text-4xl text-primary">architecture</span> Maçonnerie
@@ -580,8 +570,7 @@ tailwind.config = {
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     SECTION 7 — SOCIAL PROOF (Testimonials)
-     TERMINOLOGY: "ouvrier qualifié" exclusively — zero "artisan"
+     SECTION 7 — TESTIMONIALS
      ════════════════════════════════════════════════════════════ -->
 <section class="max-w-7xl mx-auto px-6 py-20" data-aos="fade-up">
   <div class="text-center mb-12">
@@ -605,7 +594,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
         </div>
       </div>
-      <p class="text-on-muted text-sm italic leading-relaxed">"J'ai payé le diagnostic, un ouvrier qualifié est venu le lendemain. Devis validé sur WhatsApp. Mon argent n'a été libéré qu'à ma confirmation finale. Enfin un système sérieux."</p>
+      <p class="text-on-muted text-sm italic leading-relaxed">"J'ai payé le diagnostic, un professionnel est venu le lendemain. Devis validé sur WhatsApp. Mon argent n'a été libéré qu'à ma confirmation finale. Enfin un système sérieux."</p>
     </div>
 
     <div class="base-card border-primary/30">
@@ -641,7 +630,7 @@ tailwind.config = {
           <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
         </div>
       </div>
-      <p class="text-on-muted text-sm italic leading-relaxed">"Je gère la construction de ma maison depuis Paris. Chaque semaine, je reçois des photos avec ma référence de suivi. Je vois exactement où en est le chantier. J'ai enfin l'esprit tranquille."</p>
+      <p class="text-on-muted text-sm italic leading-relaxed">"Je gère la construction de ma maison depuis Paris. Chaque semaine, je reçois des photos avec ma référence de suivi. L'agent qui me suit connaît mon dossier par cœur. J'ai enfin l'esprit tranquille."</p>
     </div>
 
   </div>
@@ -649,7 +638,6 @@ tailwind.config = {
 
 <!-- ════════════════════════════════════════════════════════════
      SECTION 8 — FAQ
-     ALL answers use "ouvrier qualifié" — ZERO "artisan"
      ════════════════════════════════════════════════════════════ -->
 <section class="max-w-4xl mx-auto px-6 py-20" data-aos="fade-up">
   <div class="text-center mb-10">
@@ -660,11 +648,11 @@ tailwind.config = {
 
     <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
       <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Est-ce que je dois tout payer à l'avance ?</h3>
+        <h3 class="font-bold text-on-surface pr-4">Dois-je tout payer à l'avance ?</h3>
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">Non. Vous payez d'abord 2 000 CFA pour le diagnostic (déduits de la facture finale). Le montant du devis est ensuite sécurisé sous dépôt de garantie — 80 % sont libérés progressivement à chaque étape validée, et les 20 % restants uniquement après votre confirmation définitive.</p>
+        <p class="text-on-muted">Non. Vous réglez d'abord 2 000 CFA pour le diagnostic terrain (montant déduit de la facture finale). Le reste du devis est sécurisé sous dépôt de garantie : 80 % sont libérés progressivement à chaque étape validée, et les 20 % restants uniquement après votre confirmation définitive.</p>
       </div>
     </div>
 
@@ -674,17 +662,17 @@ tailwind.config = {
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">Vous signalez le problème sur WhatsApp. Les fonds restent bloqués. Notre équipe intervient sous 24 h : soit l'ouvrier qualifié reprend le travail sans frais supplémentaires, soit vous êtes remboursé intégralement. Tout professionnel récidiviste est exclu définitivement du réseau.</p>
+        <p class="text-on-muted">Vous signalez le problème sur WhatsApp. Les fonds restent bloqués. Notre équipe intervient sous 24 h : soit le professionnel reprend le travail sans frais supplémentaires, soit vous êtes remboursé intégralement. Tout professionnel récidiviste est exclu définitivement du réseau.</p>
       </div>
     </div>
 
     <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
       <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Comment se déroule la vérification des ouvriers qualifiés ?</h3>
+        <h3 class="font-bold text-on-surface pr-4">Comment vérifiez-vous les ouvriers qualifiés ?</h3>
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">Notre agent terrain se déplace physiquement sur le lieu de travail de l'ouvrier qualifié. Il contrôle la CNIB, vérifie l'expérience réelle et les références sur chantier. Le badge « Vérifié » n'est jamais attribué sans visite physique confirmée.</p>
+        <p class="text-on-muted">Notre agent terrain se déplace physiquement sur le lieu de travail du professionnel. Il contrôle la CNIB, vérifie l'expérience réelle et les références sur chantier. Le badge « Vérifié » n'est jamais attribué sans visite physique confirmée.</p>
       </div>
     </div>
 
@@ -694,7 +682,7 @@ tailwind.config = {
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">La diaspora peut régler via virement SEPA ou PayPal. Dounya FasoSmart gère la conversion et le dépôt de garantie au Burkina Faso. Vous recevez un rapport photo chaque semaine accompagné de votre référence de suivi, et vous validez chaque étape depuis votre téléphone en Europe.</p>
+        <p class="text-on-muted">La diaspora peut régler par virement SEPA ou PayPal. Dounya FasoSmart gère la conversion et le dépôt de garantie au Burkina Faso. Vous recevez un rapport photo chaque semaine accompagné de votre référence de suivi, et vous validez chaque étape depuis votre téléphone en Europe.</p>
       </div>
     </div>
 
@@ -704,17 +692,27 @@ tailwind.config = {
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">2 000 CFA de diagnostic (déduits de la facture finale). 8 % de commission sur le montant final, prélevés uniquement à la libération des fonds. Aucun abonnement, aucun frais caché. Pour les ouvriers qualifiés : l'inscription au réseau est entièrement gratuite.</p>
+        <p class="text-on-muted">2 000 CFA de diagnostic (déduits de la facture finale), puis 8 % de commission sur le montant validé, prélevés uniquement à la libération des fonds. Aucun abonnement, aucuns frais cachés. Pour les ouvriers qualifiés : l'inscription au réseau est entièrement gratuite, sans commission prélevée sur leur rémunération.</p>
       </div>
     </div>
 
     <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
       <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Qu'est-ce que la référence de suivi DS-PRO ?</h3>
+        <h3 class="font-bold text-on-surface pr-4">Qui répond à mes messages sur WhatsApp ?</h3>
         <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
       </div>
       <div class="faq-answer px-6">
-        <p class="text-on-muted">Chaque demande reçoit un identifiant unique au format #DS-PRO-26-XXXX. Cette référence vous permet de suivre l'état de votre dossier à chaque étape : diagnostic, sélection de l'ouvrier qualifié, avancement du chantier, et libération des fonds. Communiquez-la dans chaque échange WhatsApp pour un traitement prioritaire.</p>
+        <p class="text-on-muted">Ce sont nos agents humains, basés à Ouagadougou, qui vous répondent directement. Aucune réponse automatique, aucun système robotisé. Votre interlocuteur connaît votre dossier et vous accompagne personnellement du premier message jusqu'à la validation finale de vos travaux.</p>
+      </div>
+    </div>
+
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+      <div class="flex items-center justify-between p-6">
+        <h3 class="font-bold text-on-surface pr-4">À quoi sert la référence de suivi DS-PRO ?</h3>
+        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
+      </div>
+      <div class="faq-answer px-6">
+        <p class="text-on-muted">Chaque demande reçoit un identifiant unique au format #DS-PRO-26-XXXX. Cette référence vous permet de suivre l'état de votre dossier à chaque étape : diagnostic, sélection du professionnel, avancement du chantier et libération des fonds. Communiquez-la dans chaque échange WhatsApp pour un traitement prioritaire.</p>
       </div>
     </div>
 
@@ -723,20 +721,20 @@ tailwind.config = {
 
 <!-- ════════════════════════════════════════════════════════════
      SECTION 9 — FINAL CTA
-     Standardized WhatsApp message as per specification.
      ════════════════════════════════════════════════════════════ -->
 <section class="grad-primary py-24 text-center text-white" data-aos="zoom-in">
   <div class="max-w-3xl mx-auto px-6">
     <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Prêt ? Votre ouvrier qualifié vérifié vous attend.</h2>
-    <p class="text-xl mb-10 text-white/90">Gratuit pour les ouvriers qualifiés. Sécurisé pour les clients. Rigoureux pour tous.</p>
+    <p class="text-xl mb-4 text-white/90">Gratuit pour les professionnels. Sécurisé pour les clients. Rigoureux pour tous.</p>
+    <p class="text-sm mb-10 text-white/60">Nos agents vous répondent personnellement — pas de réponse automatique.</p>
     <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
        target="_blank" rel="noopener"
        class="bg-white text-primary font-bold text-sm px-8 py-4 rounded-xl shadow-lg inline-flex items-center gap-2 hover:scale-105 transition-all">
       <span class="material-symbols-outlined text-[20px]">chat</span>
-      Démarrer sur WhatsApp
+      Écrire à notre équipe
     </a>
     <p class="text-xs text-white/60 mt-8 font-semibold uppercase tracking-widest">
-      Ouvriers qualifiés vérifiés sur le terrain • Dépôt de garantie Orange Money • Litige résolu en 24 h
+      Professionnels vérifiés sur le terrain • Dépôt de garantie Orange Money • Litige résolu en 24 h
     </p>
   </div>
 </section>
@@ -762,7 +760,7 @@ tailwind.config = {
       <a href="diaspora.html" class="hover:text-white transition-colors text-primary font-bold">Diaspora</a>
       <a href="tarifs.html" class="hover:text-white transition-colors">Tarifs</a>
       <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-      <a href="organisations.html" class="hover:text-white transition-colors">Organisations (B2B)</a>
+      <a href="organisations.html" class="hover:text-white transition-colors">Organisations</a>
     </div>
 
     <div>
@@ -782,105 +780,71 @@ tailwind.config = {
 </footer>
 
 <!-- ════════════════════════════════════════════════════════════
-     SCRIPTS
+     SCRIPTS — AOS loaded separately to avoid crashing menu JS
      ════════════════════════════════════════════════════════════ -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
-  // ── AOS ──────────────────────────────────────────────────────
-  AOS.init({ once: true, duration: 800, offset: 50 });
-
-  // ── MOBILE MENU ──────────────────────────────────────────────
-  const menuBtn = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  menuBtn.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    mobileMenu.classList.toggle('hidden', !isOpen);
-    menuBtn.setAttribute('aria-expanded', isOpen);
-  });
+  // ── AOS (wrapped in try-catch — CDN failure must not break page) ──
+  try { AOS.init({ once: true, duration: 800, offset: 50 }); } catch(e) { console.warn('AOS non disponible:', e); }
 
   // ── REFERENCE ID GENERATOR ──────────────────────────────────
-  // Format: #DS-PRO-YY-XXXX — unique per session, visible in hero
-  function generateRefId(pillar) {
-    pillar = pillar || 'PRO';
-    var year = new Date().getFullYear().toString().slice(-2);
-    var seq = Math.floor(1000 + Math.random() * 9000);
-    return '#DS-' + pillar + '-' + year + '-' + seq;
-  }
   (function() {
     var el = document.getElementById('hero-ref-id');
-    if (el) el.textContent = generateRefId('PRO');
+    if (el) {
+      var year = new Date().getFullYear().toString().slice(-2);
+      var seq = Math.floor(1000 + Math.random() * 9000);
+      el.textContent = '#DS-PRO-' + year + '-' + seq;
+    }
   })();
 
   // ── LOW DATA MODE — REAL BANDWIDTH SAVINGS ──────────────────
-  // CSS display:none does NOT prevent browsers from downloading
-  // images. This handler strips src/srcset attributes entirely
-  // and stores them in data-* attributes for restoration.
-  // This is the ONLY way to prevent HTTP requests on 2G/EDGE.
   var lowDataToggle = document.getElementById('low-data-toggle');
-  var _lowDataActive = false;
 
   function activateLowData() {
-    _lowDataActive = true;
     document.body.classList.add('low-data-mode');
-    // Strip src from all images except logo (data-keep)
     document.querySelectorAll('img:not([data-keep])').forEach(function(img) {
-      if (img.src && !img.dataset.origSrc) {
-        img.dataset.origSrc = img.src;
+      if (img.getAttribute('src') && !img.dataset.origSrc) {
+        img.dataset.origSrc = img.getAttribute('src');
         img.removeAttribute('src');
       }
-      if (img.srcset && !img.dataset.origSrcset) {
-        img.dataset.origSrcset = img.srcset;
+      if (img.getAttribute('srcset') && !img.dataset.origSrcset) {
+        img.dataset.origSrcset = img.getAttribute('srcset');
         img.removeAttribute('srcset');
       }
     });
-    // Strip source elements in <picture> tags
     document.querySelectorAll('picture source').forEach(function(src) {
-      if (src.srcset && !src.dataset.origSrcset) {
-        src.dataset.origSrcset = src.srcset;
+      if (src.getAttribute('srcset') && !src.dataset.origSrcset) {
+        src.dataset.origSrcset = src.getAttribute('srcset');
         src.removeAttribute('srcset');
       }
     });
-    // Disable AOS to prevent layout recalculations
-    if (typeof AOS !== 'undefined') AOS.refreshHard();
     localStorage.setItem('fasosmart_lowdata', 'true');
   }
 
   function deactivateLowData() {
-    _lowDataActive = false;
     document.body.classList.remove('low-data-mode');
-    // Restore src/srcset
-    document.querySelectorAll('img[data-orig-src]').forEach(function(img) {
-      img.src = img.dataset.origSrc;
-      delete img.dataset.origSrc;
+    document.querySelectorAll('[data-orig-src]').forEach(function(el) {
+      el.setAttribute('src', el.dataset.origSrc);
+      delete el.dataset.origSrc;
     });
-    document.querySelectorAll('img[data-orig-srcset]').forEach(function(img) {
-      img.srcset = img.dataset.origSrcset;
-      delete img.dataset.origSrcset;
-    });
-    document.querySelectorAll('source[data-orig-srcset]').forEach(function(src) {
-      src.srcset = src.dataset.origSrcset;
-      delete src.dataset.origSrcset;
+    document.querySelectorAll('[data-orig-srcset]').forEach(function(el) {
+      el.setAttribute('srcset', el.dataset.origSrcset);
+      delete el.dataset.origSrcset;
     });
     localStorage.setItem('fasosmart_lowdata', 'false');
   }
 
-  // Restore preference on page load
   if (localStorage.getItem('fasosmart_lowdata') === 'true') {
     lowDataToggle.checked = true;
     activateLowData();
   }
 
   lowDataToggle.addEventListener('change', function(e) {
-    if (e.target.checked) {
-      activateLowData();
-    } else {
-      deactivateLowData();
-    }
+    e.target.checked ? activateLowData() : deactivateLowData();
   });
 </script>
 
-<!-- global.js — WhatsApp FAB, SW registration, shared utilities -->
 <script src="global.js"></script>
 
 </body>

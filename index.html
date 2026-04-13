@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <!--
-  ============================================================
-  DOUNYA FASOSMART — Homepage (index.html) v2.1 — Production
-  ============================================================
-  TERMINOLOGY: "ouvrier qualifié" exclusively. Zero "artisan".
-  MONETIZATION: 2 000 CFA diagnostic + 8 % commission at release.
-  NO chatbot/robot language — human agents only.
-  ============================================================
+  DOUNYA FASOSMART — Homepage v3.0 — Mobile-First Production
+  Terminology: "ouvrier qualifié" exclusively. Zero "artisan".
+  Monetization: 2 000 CFA diagnostic + 8 % commission at release.
+  Human agents only — no chatbot/robot language.
 -->
 <html lang="fr">
 <head>
@@ -22,6 +19,9 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_BF">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dounya FasoSmart | Ouvriers qualifiés vérifiés, paiement sécurisé">
+<meta name="twitter:description" content="Trouvez un ouvrier qualifié fiable pour vos travaux. Paiement sécurisé jusqu'à validation. Suivi terrain garanti.">
+<meta name="twitter:image" content="og-image.png">
 <link rel="manifest" href="manifest.json">
 <link rel="canonical" href="https://fasosmart.bf/">
 
@@ -38,23 +38,12 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        "primary":"#1B650C",
-        "primary-dark":"#144D09",
-        "primary-light":"#EBF5E8",
-        "gold":"#B8860B",
-        "gold-light":"#FDF6E3",
-        "surface":"#FAF9F5",
-        "surface-low":"#F5F3EC",
-        "surface-mid":"#EEEADE",
-        "on-surface":"#1C1C1C",
-        "on-muted":"#535353",
-        "outline":"#DEDCD4",
-        "error":"#BA1A1A",
+        "primary":"#1B650C","primary-dark":"#144D09","primary-light":"#EBF5E8",
+        "gold":"#B8860B","gold-light":"#FDF6E3",
+        "surface":"#FAF9F5","surface-low":"#F5F3EC","surface-mid":"#EEEADE",
+        "on-surface":"#1C1C1C","on-muted":"#535353","outline":"#DEDCD4","error":"#BA1A1A"
       },
-      fontFamily: {
-        display:["Poppins","sans-serif"],
-        body:["Inter","sans-serif"]
-      }
+      fontFamily: { display:["Poppins","sans-serif"], body:["Inter","sans-serif"] }
     }
   }
 }
@@ -64,705 +53,638 @@ tailwind.config = {
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   .icon-filled { font-variation-settings: 'FILL' 1 !important; }
 
-  body { font-family: 'Inter', sans-serif; background-color: #FAF9F5; color: #1C1C1C; line-height: 1.7; }
-  h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.1; }
+  body { font-family: 'Inter', sans-serif; background-color: #FAF9F5; color: #1C1C1C; line-height: 1.75; }
+  h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.15; }
 
   .grad-primary { background: linear-gradient(135deg, #1B650C 0%, #144D09 100%); }
 
-  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 16px; border-radius: 9999px;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
 
-  .base-card { background: white; border: 1px solid #DEDCD4; border-radius: 24px; padding: 32px; transition: all 200ms ease; }
-  .base-card:hover { border-color: #1B650C; box-shadow: 0 10px 25px -5px rgba(27, 101, 12, 0.1), 0 8px 10px -6px rgba(27, 101, 12, 0.1); }
+  .base-card {
+    background: white; border: 1px solid #DEDCD4;
+    border-radius: 24px; padding: 28px;
+    transition: all 200ms ease;
+  }
+  @media (min-width: 768px) { .base-card { padding: 32px; } }
+  .base-card:hover { border-color: #1B650C; box-shadow: 0 10px 25px -5px rgba(27,101,12,.1); }
 
-  #mobile-menu { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
-  #mobile-menu.menu-closed { transform: translateY(-10px); opacity: 0; pointer-events: none; display: none; }
-  #mobile-menu.menu-open { transform: translateY(0); opacity: 1; pointer-events: all; display: block; }
+  /* ── MOBILE MENU: full-screen overlay ── */
+  .mobile-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .mobile-overlay.is-active { opacity: 1; pointer-events: all; }
 
-  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
-  .faq-item.open .faq-answer { max-height: 500px; padding-bottom: 1.5rem; }
+  .mobile-drawer {
+    position: fixed; top: 0; right: 0; z-index: 201;
+    width: 85vw; max-width: 360px; height: 100dvh;
+    background: #fff; box-shadow: -4px 0 24px rgba(0,0,0,.15);
+    transform: translateX(100%);
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  .mobile-drawer.is-active { transform: translateX(0); }
+
+  /* ── FAQ ── */
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; }
+  .faq-item.open .faq-answer { max-height: 600px; padding-bottom: 1.5rem; }
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
-  .faq-arrow { transition: transform 0.3s ease; }
+  .faq-arrow { transition: transform .3s ease; }
 
-  /* LOW DATA MODE — strips src attributes via JS for real savings */
+  /* ── LOW DATA MODE ── */
   body.low-data-mode img:not([data-keep]) { display: none !important; }
-  body.low-data-mode picture, body.low-data-mode source { display: none !important; }
-  body.low-data-mode .image-placeholder { display: flex !important; background: #EEEADE; border-radius: 2rem; align-items: center; justify-content: center; min-height: 250px; }
+  body.low-data-mode .image-placeholder { display: flex !important; background: #EEEADE; border-radius: 2rem; align-items: center; justify-content: center; min-height: 220px; }
   body.low-data-mode [data-aos] { transform: none !important; opacity: 1 !important; transition: none !important; }
 
+  /* ── FOCUS RING (Tailwind preflight resets outlines — restore for keyboard users) ── */
+  :focus-visible {
+    outline: 3px solid #1B650C;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ── REFERENCE ID BADGE ── */
   .ref-id-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    padding: 10px 18px; border-radius: 12px;
-    background: linear-gradient(135deg, #EBF5E8 0%, #FDF6E3 100%);
+    padding: 10px 16px; border-radius: 12px;
+    background: linear-gradient(135deg, #EBF5E8, #FDF6E3);
     border: 2px dashed #1B650C;
     font-family: 'Poppins', monospace; font-weight: 700;
-    font-size: 0.95rem; letter-spacing: 0.08em; color: #1B650C;
+    font-size: 0.9rem; letter-spacing: .06em; color: #1B650C;
   }
-  .ref-id-badge .ref-prefix { color: #535353; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; }
+  .ref-id-badge .ref-prefix { color: #535353; font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: .1em; }
+
+  /* ── MOBILE BODY TEXT OVERRIDE ──
+     French text needs more breathing room than English.
+     Base size bumped from 14px (text-sm) to 15px on mobile. */
+  @media (max-width: 767px) {
+    body { font-size: 15px; line-height: 1.8; }
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.6rem !important; }
+    .base-card { padding: 24px; }
+    .faq-item .font-bold { font-size: 0.95rem; }
+  }
 </style>
-
-<!--
-  FIX: Mobile menu JS is placed BEFORE AOS and all other scripts.
-  This guarantees the burger button works even if AOS CDN fails
-  to load (common on 2G/EDGE in Ouagadougou). Previously, AOS.init()
-  failing would crash the entire script block, killing the menu.
--->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // ── MOBILE MENU (runs first, no dependencies) ──────────────
-  var menuBtn = document.getElementById('menu-toggle');
-  var mobileMenu = document.getElementById('mobile-menu');
-
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      var isOpen = mobileMenu.classList.contains('menu-open');
-      if (isOpen) {
-        mobileMenu.classList.remove('menu-open');
-        mobileMenu.classList.add('menu-closed');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-      } else {
-        mobileMenu.classList.remove('menu-closed');
-        mobileMenu.classList.add('menu-open');
-        menuBtn.setAttribute('aria-expanded', 'true');
-        menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
-      }
-    });
-
-    // Close menu when tapping a link inside it
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        mobileMenu.classList.remove('menu-open');
-        mobileMenu.classList.add('menu-closed');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-      });
-    });
-
-    // Close menu when tapping outside
-    document.addEventListener('click', function(e) {
-      if (mobileMenu.classList.contains('menu-open') &&
-          !mobileMenu.contains(e.target) &&
-          !menuBtn.contains(e.target)) {
-        mobileMenu.classList.remove('menu-open');
-        mobileMenu.classList.add('menu-closed');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
-      }
-    });
-  }
-});
-</script>
 </head>
 <body class="overflow-x-hidden antialiased">
 
 <!-- ════════════════════════════════════════════════════════════
-     NAVIGATION BAR
+     NAVIGATION BAR — Flat links, no CSS hover dropdown
+     Desktop: all links visible in a row (no Écosystèmes group)
+     Mobile: hamburger → full-screen slide-in drawer
      ════════════════════════════════════════════════════════════ -->
-<nav class="fixed top-0 w-full z-[100] bg-[#FAF9F5]/95 backdrop-blur-md border-b border-[#DEDCD4] py-4 px-6 md:px-12" id="main-nav" role="navigation" aria-label="Menu principal">
+<nav class="fixed top-0 w-full z-[100] bg-[#FAF9F5]/95 backdrop-blur-md border-b border-[#DEDCD4] py-3 px-5 md:px-12" id="main-nav" role="navigation" aria-label="Menu principal">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
 
     <a href="index.html" class="flex items-center no-underline">
-      <img src="logo_refined.png" alt="Dounya FasoSmart Logo" class="h-10" data-keep>
+      <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-9 md:h-10" data-keep>
     </a>
 
-    <!-- DESKTOP NAVIGATION -->
-    <div class="hidden md:flex gap-8 font-body font-semibold text-sm items-center">
+    <!-- DESKTOP NAV — flat list, NO dropdown, NO hover menus -->
+    <div class="hidden md:flex gap-6 font-body font-semibold text-sm items-center">
       <a href="index.html" class="text-primary font-bold">Accueil</a>
       <a href="fonctionnement.html" class="text-on-muted hover:text-primary transition-colors">Fonctionnement</a>
-
-      <div class="relative group">
-        <button class="text-on-muted hover:text-primary transition-colors flex items-center gap-1" aria-haspopup="true" aria-expanded="false">
-          Écosystèmes <span class="material-symbols-outlined text-sm">expand_more</span>
-        </button>
-        <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
-          <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
-            <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients locaux</a>
-            <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
-            <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
-          </div>
-        </div>
-      </div>
-
+      <a href="clients.html" class="text-on-muted hover:text-primary transition-colors">Clients</a>
+      <a href="diaspora.html" class="text-on-muted hover:text-primary transition-colors">Diaspora</a>
+      <a href="artisans.html" class="text-on-muted hover:text-primary transition-colors">Ouvriers qualifiés</a>
       <a href="tarifs.html" class="text-on-muted hover:text-primary transition-colors">Tarifs</a>
       <a href="contact.html" class="text-on-muted hover:text-primary transition-colors">Contact</a>
     </div>
 
-    <!-- DESKTOP: Low Data + WhatsApp CTA -->
-    <div class="hidden md:flex items-center gap-5">
-      <label class="flex items-center cursor-pointer gap-2" title="Mode économie de données — désactive le chargement des images pour les connexions lentes">
+    <!-- DESKTOP: Low Data + WhatsApp -->
+    <div class="hidden md:flex items-center gap-4">
+      <label class="flex items-center cursor-pointer gap-2" title="Mode économie de données">
         <input type="checkbox" id="low-data-toggle" class="sr-only peer">
-        <span class="text-[0.65rem] font-bold uppercase tracking-wider text-on-muted">Mode éco.</span>
+        <span class="text-[0.65rem] font-bold uppercase tracking-wider text-on-muted">Éco.</span>
         <div class="relative w-9 h-5 bg-outline rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
       </label>
 
       <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
          target="_blank" rel="noopener"
          class="bg-[#25D366] text-white text-xs font-bold px-4 py-2 rounded-full flex items-center gap-2 hover:bg-[#1fba58] transition-colors">
-        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.913.913l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.357 0-4.542-.813-6.262-2.172l-.438-.348-3.165 1.061 1.061-3.165-.348-.438A9.956 9.956 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
         WhatsApp
       </a>
     </div>
 
-    <!--
-      MOBILE HAMBURGER — min-w-[48px] min-h-[48px] guarantees
-      a 48×48px tap target per WCAG 2.5.5 (mobile touch minimum).
-      Previously p-2 was too small for reliable finger taps.
-    -->
-    <button id="menu-toggle" class="md:hidden text-on-surface min-w-[48px] min-h-[48px] flex items-center justify-center rounded-lg active:bg-primary-light transition-colors" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span class="material-symbols-outlined text-3xl">menu</span>
+    <!-- MOBILE: Hamburger (48×48 minimum touch target) -->
+    <button id="menu-toggle" class="md:hidden min-w-[48px] min-h-[48px] flex items-center justify-center rounded-lg active:bg-primary-light transition-colors" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span class="material-symbols-outlined text-[28px] text-on-surface">menu</span>
     </button>
-  </div>
-
-  <!--
-    MOBILE MENU — class "menu-closed" replaces "hidden" to avoid
-    conflict with Tailwind's built-in "hidden" utility class.
-    This was the root cause of the non-responsive burger menu.
-  -->
-  <div id="mobile-menu" class="menu-closed md:hidden absolute top-full left-0 w-full bg-white border-b border-outline shadow-xl px-6 py-6 z-50">
-    <div class="flex flex-col gap-4 font-semibold text-sm">
-      <a href="index.html" class="text-primary py-2">Accueil</a>
-      <a href="fonctionnement.html" class="text-on-muted py-2">Fonctionnement</a>
-      <a href="clients.html" class="text-on-muted py-2">Clients locaux</a>
-      <a href="diaspora.html" class="text-on-muted py-2">Diaspora</a>
-      <a href="artisans.html" class="text-on-muted py-2">Ouvriers qualifiés</a>
-      <a href="tarifs.html" class="text-on-muted py-2">Tarifs</a>
-      <a href="contact.html" class="text-on-muted py-2">Contact</a>
-      <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
-         target="_blank" rel="noopener"
-         class="bg-[#25D366] text-white text-center font-bold py-3 rounded-xl mt-2">
-        Écrire à notre équipe sur WhatsApp
-      </a>
-    </div>
   </div>
 </nav>
 
-<main class="pt-24">
+<!-- MOBILE: Dark overlay behind drawer -->
+<div id="mobile-overlay" class="mobile-overlay"></div>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 1 — HERO
-     ════════════════════════════════════════════════════════════ -->
-<section class="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
+<!-- MOBILE: Slide-in drawer from the right -->
+<div id="mobile-drawer" class="mobile-drawer" role="dialog" aria-label="Menu de navigation">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-outline">
+    <img src="logo_refined.png" alt="FasoSmart" class="h-8" data-keep>
+    <button id="drawer-close" class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg active:bg-surface-mid" aria-label="Fermer le menu">
+      <span class="material-symbols-outlined text-[24px] text-on-muted">close</span>
+    </button>
+  </div>
+
+  <div class="flex flex-col px-6 py-4">
+    <!-- Each link: full-width, 48px minimum height, generous padding -->
+    <a href="index.html" class="flex items-center gap-3 py-4 text-primary font-bold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">home</span> Accueil
+    </a>
+    <a href="fonctionnement.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">info</span> Fonctionnement
+    </a>
+    <a href="clients.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">person</span> Clients locaux
+    </a>
+    <a href="diaspora.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">flight</span> Diaspora
+    </a>
+    <a href="artisans.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">engineering</span> Ouvriers qualifiés
+    </a>
+    <a href="tarifs.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">payments</span> Tarifs
+    </a>
+    <a href="contact.html" class="flex items-center gap-3 py-4 text-on-surface font-semibold border-b border-outline/50">
+      <span class="material-symbols-outlined text-[20px]">mail</span> Contact
+    </a>
+  </div>
+
+  <!-- Low-data toggle in mobile drawer -->
+  <div class="px-6 py-4 border-t border-outline/50">
+    <label class="flex items-center justify-between cursor-pointer">
+      <span class="text-sm font-semibold text-on-muted">Mode économie de données</span>
+      <input type="checkbox" id="low-data-toggle-mobile" class="sr-only peer">
+      <div class="relative w-10 h-5 bg-outline rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+    </label>
+  </div>
+
+  <!-- WhatsApp CTA — prominent at bottom of drawer -->
+  <div class="px-6 pb-8 pt-4">
+    <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
+       target="_blank" rel="noopener"
+       class="bg-[#25D366] text-white text-center font-bold py-4 rounded-xl block text-base">
+      Écrire à notre équipe
+    </a>
+    <p class="text-center text-xs text-on-muted mt-3">Nos agents vous répondent personnellement</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════ -->
+<main class="pt-20 md:pt-24">
+
+<!-- SECTION 1 — HERO -->
+<section class="max-w-7xl mx-auto px-5 md:px-6 py-10 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center" data-aos="fade-up">
   <div>
-    <div class="chip bg-primary-light text-primary mb-6">
+    <div class="chip bg-primary-light text-primary mb-5">
       <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
       Plateforme de confiance — Burkina Faso
     </div>
 
-    <h1 class="text-[2.5rem] md:text-[3.5rem] font-extrabold text-on-surface mb-6 tracking-tight">
-      Trouvez un ouvrier qualifié fiable pour vos travaux, en toute sécurité.
+    <h1 class="text-[2rem] md:text-[3.5rem] font-extrabold text-on-surface mb-5 tracking-tight leading-tight">
+      Trouvez un ouvrier qualifié fiable, en toute sécurité.
     </h1>
 
-    <p class="text-lg md:text-xl text-on-muted mb-8 max-w-lg">
+    <p class="text-base md:text-xl text-on-muted mb-7 max-w-lg leading-relaxed">
       Dounya FasoSmart met en relation les ouvriers qualifiés vérifiés et les clients sérieux au Burkina Faso — avec dépôt de garantie via Orange Money et suivi rigoureux sur le terrain.
     </p>
 
-    <!-- REFERENCE ID — visually prominent tracking badge -->
+    <!-- REFERENCE ID -->
     <div class="mb-6">
       <div class="ref-id-badge" id="hero-ref-badge">
         <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
         <span>
           <span class="ref-prefix block">Votre référence de suivi</span>
-          <span id="hero-ref-id">DS-PRO-26-0000</span>
+          <span id="hero-ref-id">#DS-PRO-26-0000</span>
         </span>
       </div>
-      <p class="text-[0.65rem] text-on-muted mt-2 ml-1">Chaque demande reçoit un identifiant unique pour un suivi transparent de bout en bout.</p>
+      <p class="text-xs text-on-muted mt-2 ml-1">Chaque demande reçoit un identifiant unique pour un suivi transparent.</p>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+    <div class="flex flex-col sm:flex-row gap-4 mb-5">
       <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
          target="_blank" rel="noopener"
-         class="bg-[#25D366] text-white font-bold text-sm px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-2">
+         class="bg-[#25D366] text-white font-bold text-base px-6 py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-center flex items-center justify-center gap-2">
         <span class="material-symbols-outlined text-[20px]">chat</span>
         Trouver mon ouvrier qualifié
       </a>
-      <a href="artisans.html" class="bg-white border-2 border-primary/20 text-on-muted font-bold text-sm px-6 py-4 rounded-xl hover:bg-primary-light hover:text-primary transition-all text-center">
+      <a href="artisans.html" class="bg-white border-2 border-primary/20 text-on-muted font-bold text-base px-6 py-4 rounded-xl hover:bg-primary-light hover:text-primary transition-all text-center">
         Je suis ouvrier qualifié
       </a>
     </div>
 
-    <div class="flex items-center gap-2 text-xs font-semibold text-on-surface">
-      <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
-      Dépôt de garantie sécurisé • Experts vérifiés sur le terrain • Sans frais cachés
+    <div class="flex items-center gap-2 text-sm font-semibold text-on-surface">
+      <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+      Dépôt de garantie • Experts vérifiés • Sans frais cachés
     </div>
   </div>
 
   <!-- HERO IMAGE -->
-  <div class="relative w-full aspect-square md:aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+  <div class="relative w-full aspect-[4/3] md:aspect-[4/5] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl">
     <div class="image-placeholder hidden w-full h-full flex flex-col items-center justify-center text-primary font-bold">
       <span class="material-symbols-outlined text-5xl mb-2">engineering</span>
       Visualisation terrain
     </div>
     <img src="home_hero_client.png" alt="Ouvrier qualifié au travail à Ouagadougou" class="w-full h-full object-cover" loading="eager"/>
-
-    <div class="absolute bottom-6 left-6 bg-white p-4 rounded-xl shadow-lg flex items-center gap-3">
+    <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white p-3 md:p-4 rounded-xl shadow-lg flex items-center gap-3">
       <div class="bg-primary-light p-2 rounded-full flex-shrink-0">
-        <span class="material-symbols-outlined text-primary">verified_user</span>
+        <span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
       </div>
       <div>
         <p class="font-bold text-sm">Ouvrier qualifié vérifié</p>
-        <p class="text-[0.65rem] text-on-muted uppercase tracking-wider">Contrôle terrain confirmé</p>
+        <p class="text-[0.7rem] text-on-muted uppercase tracking-wider">Contrôle terrain confirmé</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 2 — TRUST BAR
-     ════════════════════════════════════════════════════════════ -->
-<section class="bg-surface-mid border-y border-outline py-8" data-aos="fade-in">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<!-- SECTION 2 — TRUST BAR -->
+<section class="bg-surface-mid border-y border-outline py-6 md:py-8" data-aos="fade-in">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
     <div>
-      <div class="font-display font-extrabold text-3xl md:text-4xl text-primary mb-1">200+</div>
-      <div class="font-body text-[0.8rem] text-on-muted uppercase tracking-widest">Experts vérifiés</div>
+      <div class="font-display font-extrabold text-2xl md:text-4xl text-primary mb-1">200+</div>
+      <div class="font-body text-xs md:text-[0.8rem] text-on-muted uppercase tracking-widest">Experts vérifiés</div>
     </div>
     <div>
-      <div class="font-display font-extrabold text-3xl md:text-4xl text-primary mb-1">4 niveaux</div>
-      <div class="font-body text-[0.8rem] text-on-muted uppercase tracking-widest">De confiance progressive</div>
+      <div class="font-display font-extrabold text-2xl md:text-4xl text-primary mb-1">4</div>
+      <div class="font-body text-xs md:text-[0.8rem] text-on-muted uppercase tracking-widest">Niveaux de confiance</div>
     </div>
     <div>
-      <div class="font-display font-extrabold text-3xl md:text-4xl text-primary mb-1">&lt;4h</div>
-      <div class="font-body text-[0.8rem] text-on-muted uppercase tracking-widest">Temps de réponse</div>
+      <div class="font-display font-extrabold text-2xl md:text-4xl text-primary mb-1">&lt;4h</div>
+      <div class="font-body text-xs md:text-[0.8rem] text-on-muted uppercase tracking-widest">Temps de réponse</div>
     </div>
     <div>
-      <div class="font-display font-extrabold text-3xl md:text-4xl text-primary mb-1">0 CFA</div>
-      <div class="font-body text-[0.8rem] text-on-muted uppercase tracking-widest">Pour rejoindre le réseau</div>
+      <div class="font-display font-extrabold text-2xl md:text-4xl text-primary mb-1">0 CFA</div>
+      <div class="font-body text-xs md:text-[0.8rem] text-on-muted uppercase tracking-widest">Pour rejoindre</div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 3 — PROBLEM / SOLUTION
-     ════════════════════════════════════════════════════════════ -->
-<section class="bg-surface-low py-20" data-aos="fade-up">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <div class="chip bg-on-surface text-white mb-6">Le problème</div>
-    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">La confiance, construite en béton.</h2>
-    <p class="text-on-muted mb-12 max-w-xl mx-auto">Trouver un professionnel fiable à Ouagadougou reste souvent un pari. Dounya FasoSmart apporte la sécurité qui manque.</p>
+<!-- SECTION 3 — PROBLEM / SOLUTION -->
+<section class="bg-surface-low py-16 md:py-20" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-5 md:px-6 text-center">
+    <div class="chip bg-on-surface text-white mb-5">Le problème</div>
+    <h2 class="font-extrabold text-on-surface mb-4">La confiance, construite en béton.</h2>
+    <p class="text-on-muted mb-10 md:mb-12 max-w-xl mx-auto leading-relaxed">Trouver un professionnel fiable à Ouagadougou reste souvent un pari. Dounya FasoSmart apporte la sécurité qui manque.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-left">
       <div class="base-card border-l-4 border-l-error">
-        <h3 class="text-xl font-bold mb-6 text-error flex items-center gap-2">
+        <h3 class="text-lg md:text-xl font-bold mb-5 text-error flex items-center gap-2">
           <span class="material-symbols-outlined">warning</span> Sans Dounya FasoSmart
         </h3>
         <ul class="space-y-4 text-on-muted">
-          <li class="flex gap-3"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0">close</span> Risque d'abandon de chantier ou de malfaçon sans recours.</li>
-          <li class="flex gap-3"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0">close</span> Avances versées sans garantie réelle d'exécution.</li>
-          <li class="flex gap-3"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0">close</span> Difficulté pour la diaspora de vérifier l'avancement réel à distance.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5">close</span> Risque d'abandon de chantier ou de malfaçon sans recours.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5">close</span> Avances versées sans garantie réelle d'exécution.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-error text-[20px] flex-shrink-0 mt-0.5">close</span> Difficulté pour la diaspora de vérifier l'avancement réel à distance.</li>
         </ul>
       </div>
-
       <div class="base-card border-l-4 border-l-primary">
-        <h3 class="text-xl font-bold mb-6 text-primary flex items-center gap-2">
+        <h3 class="text-lg md:text-xl font-bold mb-5 text-primary flex items-center gap-2">
           <span class="material-symbols-outlined">shield</span> Avec Dounya FasoSmart
         </h3>
         <ul class="space-y-4 text-on-muted">
-          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Chaque professionnel est vérifié physiquement par nos agents terrain.</li>
-          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Votre paiement est protégé par un dépôt de garantie jusqu'à validation finale.</li>
-          <li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0">check_circle</span> Rapports photo réguliers et prise en charge rapide en cas de litige.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5">check_circle</span> Chaque professionnel est vérifié physiquement par nos agents terrain.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5">check_circle</span> Votre paiement est protégé par un dépôt de garantie jusqu'à validation finale.</li>
+          <li class="flex gap-3 leading-relaxed"><span class="material-symbols-outlined text-primary text-[20px] flex-shrink-0 mt-0.5">check_circle</span> Rapports photo réguliers et prise en charge rapide en cas de litige.</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 4 — ESCROW FLOW (Dark Section)
-     MONETIZATION MODEL — ONE clear model, no contradictions:
-     → 2 000 CFA diagnostic (déduit du montant final)
-     → 8 % de commission prélevée à la libération des fonds
-     → Ouvriers qualifiés : inscription 100 % gratuite
-     → Pas de frais séparés "professionnel 2 % / client 3 %"
-     ════════════════════════════════════════════════════════════ -->
-<section class="bg-[#1C1C1C] text-white py-24" data-aos="fade-up">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="chip bg-white/10 text-white mb-6">Sécurité financière</div>
-    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 max-w-2xl">Votre argent est protégé. À chaque étape.</h2>
+<!-- SECTION 4 — ESCROW FLOW -->
+<section class="bg-[#1C1C1C] text-white py-16 md:py-24" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-5 md:px-6">
+    <div class="chip bg-white/10 text-white mb-5">Sécurité financière</div>
+    <h2 class="font-extrabold mb-4 max-w-2xl">Votre argent est protégé. À chaque étape.</h2>
 
-    <!-- CLEAR PRICING BLOCK — eliminates all ambiguity -->
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 max-w-2xl">
+    <!-- PRICING — clear, visual, no ambiguity -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 mb-6 max-w-2xl">
       <h3 class="font-bold text-base mb-4 flex items-center gap-2">
         <span class="material-symbols-outlined text-primary">payments</span>
         Tarification transparente
       </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-        <div class="bg-white/5 rounded-xl p-4 text-center">
-          <div class="font-display font-extrabold text-2xl text-white mb-1">2 000 <span class="text-sm font-body font-normal text-white/60">CFA</span></div>
-          <p class="text-white/70 text-xs">Diagnostic terrain<br><span class="text-white/40">(déduit du montant final)</span></p>
+      <div class="grid grid-cols-3 gap-3 md:gap-4">
+        <div class="bg-white/5 rounded-xl p-3 md:p-4 text-center">
+          <div class="font-display font-extrabold text-xl md:text-2xl text-white mb-1">2 000</div>
+          <p class="text-white/50 text-[0.65rem] md:text-xs">CFA diagnostic<br>(déduit du total)</p>
         </div>
-        <div class="bg-white/5 rounded-xl p-4 text-center">
-          <div class="font-display font-extrabold text-2xl text-white mb-1">8 <span class="text-sm font-body font-normal text-white/60">%</span></div>
-          <p class="text-white/70 text-xs">Commission de service<br><span class="text-white/40">(prélevée à la libération)</span></p>
+        <div class="bg-white/5 rounded-xl p-3 md:p-4 text-center">
+          <div class="font-display font-extrabold text-xl md:text-2xl text-white mb-1">8 %</div>
+          <p class="text-white/50 text-[0.65rem] md:text-xs">Commission<br>(à la libération)</p>
         </div>
-        <div class="bg-white/5 rounded-xl p-4 text-center">
-          <div class="font-display font-extrabold text-2xl text-primary mb-1">0 <span class="text-sm font-body font-normal text-white/60">CFA</span></div>
-          <p class="text-white/70 text-xs">Pour les ouvriers qualifiés<br><span class="text-white/40">(inscription gratuite à vie)</span></p>
+        <div class="bg-white/5 rounded-xl p-3 md:p-4 text-center">
+          <div class="font-display font-extrabold text-xl md:text-2xl text-primary mb-1">0</div>
+          <p class="text-white/50 text-[0.65rem] md:text-xs">Pour les ouvriers<br>(gratuit à vie)</p>
         </div>
       </div>
-      <p class="text-[0.7rem] text-white/40 mt-4 italic">Il n'existe aucun autre frais. Pas d'abonnement, pas de frais de dossier, pas de prélèvement séparé sur le professionnel.</p>
+      <p class="text-[0.7rem] text-white/30 mt-3 leading-relaxed">Aucun autre frais. Pas d'abonnement, pas de frais de dossier, pas de prélèvement séparé sur le professionnel.</p>
     </div>
 
-    <!-- 80/20 ESCROW PROTOCOL -->
-    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-16 max-w-2xl">
-      <div class="flex items-start gap-4">
+    <!-- 80/20 PROTOCOL -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 md:p-6 mb-12 md:mb-16 max-w-2xl">
+      <div class="flex items-start gap-3 md:gap-4">
         <div class="bg-primary/20 p-2 rounded-full flex-shrink-0 mt-1">
           <span class="material-symbols-outlined text-primary">account_balance</span>
         </div>
         <div>
-          <h3 class="font-bold text-base mb-2">Protocole de libération par étapes</h3>
-          <p class="text-sm text-white/70 mb-3">Vos fonds sont conservés sur un compte marchand Orange Money dédié, distinct du compte du professionnel. La libération se fait par étapes vérifiées :</p>
-          <div class="space-y-2 text-sm">
-            <div class="flex items-center gap-3">
-              <span class="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[40px] text-center">80 %</span>
-              <span class="text-white/80">Libérés progressivement à la validation des étapes clés du chantier.</span>
+          <h3 class="font-bold text-base mb-2">Libération par étapes</h3>
+          <p class="text-sm text-white/70 mb-3 leading-relaxed">Vos fonds sont conservés sur un compte marchand dédié, distinct du compte du professionnel :</p>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[44px] text-center flex-shrink-0">80 %</span>
+              <span class="text-white/80 text-sm leading-relaxed">Libérés progressivement à chaque étape clé validée (fondations, élévation, finitions).</span>
             </div>
-            <div class="flex items-center gap-3">
-              <span class="bg-gold text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[40px] text-center">20 %</span>
-              <span class="text-white/80">Retenus jusqu'à votre validation définitive. Vous confirmez, les fonds sont versés sous 48 h.</span>
+            <div class="flex items-start gap-3">
+              <span class="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[44px] text-center flex-shrink-0">20 %</span>
+              <span class="text-white/80 text-sm leading-relaxed">Retenus jusqu'à votre validation définitive. Versés sous 48 h après confirmation.</span>
             </div>
           </div>
-          <p class="text-[0.7rem] text-white/40 mt-3 italic">Les fonds transitent par un compte marchand agréé. Dounya FasoSmart intervient en qualité de mandataire de validation, et non de dépositaire de fonds.</p>
+          <p class="text-[0.7rem] text-white/30 mt-3 italic leading-relaxed">Les fonds transitent par un compte marchand agréé. Dounya FasoSmart intervient en qualité de mandataire de validation.</p>
         </div>
       </div>
     </div>
 
     <!-- 4-STEP FLOW -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 relative">
       <div class="hidden md:block absolute top-[40px] left-0 w-full h-[2px] border-t-2 border-dashed border-white/20 z-0"></div>
 
-      <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10" data-aos="fade-up">
-        <div class="w-12 h-12 rounded-full bg-primary mb-4 flex items-center justify-center text-xl font-bold font-display">1</div>
-        <h3 class="font-bold text-base mb-3">Besoin défini</h3>
-        <p class="text-sm text-white/70">Décrivez votre besoin sur WhatsApp. <strong class="text-white/90">Nos agents</strong> identifient le professionnel adapté à votre projet.</p>
+      <div class="bg-[#2a2a2a] p-5 md:p-6 rounded-2xl relative z-10" data-aos="fade-up">
+        <div class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary mb-3 flex items-center justify-center text-lg font-bold font-display">1</div>
+        <h3 class="font-bold text-base mb-2">Besoin défini</h3>
+        <p class="text-sm text-white/70 leading-relaxed">Décrivez votre besoin sur WhatsApp. <strong class="text-white/90">Nos agents</strong> identifient le professionnel adapté.</p>
       </div>
-
-      <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
-        <div class="w-12 h-12 rounded-full bg-orange-700/80 mb-4 flex items-center justify-center text-xl font-bold font-display">2</div>
-        <h3 class="font-bold text-base mb-3">Dépôt sécurisé</h3>
-        <p class="text-sm text-white/70">Le montant convenu est sécurisé sous dépôt de garantie via Orange Money ou Wave.</p>
+      <div class="bg-[#2a2a2a] p-5 md:p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-orange-700/80 mb-3 flex items-center justify-center text-lg font-bold font-display">2</div>
+        <h3 class="font-bold text-base mb-2">Dépôt sécurisé</h3>
+        <p class="text-sm text-white/70 leading-relaxed">Le montant convenu est sécurisé sous dépôt de garantie via Orange Money ou Wave.</p>
       </div>
-
-      <div class="bg-[#2a2a2a] p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
-        <div class="w-12 h-12 rounded-full bg-primary mb-4 flex items-center justify-center text-xl font-bold font-display">3</div>
-        <h3 class="font-bold text-base mb-3">Suivi actif</h3>
-        <p class="text-sm text-white/70">Le chantier avance avec des preuves visuelles. <strong class="text-white/90">Nos agents terrain</strong> vérifient la conformité. 80 % libérés par étape.</p>
+      <div class="bg-[#2a2a2a] p-5 md:p-6 rounded-2xl relative z-10 border border-white/10" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary mb-3 flex items-center justify-center text-lg font-bold font-display">3</div>
+        <h3 class="font-bold text-base mb-2">Suivi actif</h3>
+        <p class="text-sm text-white/70 leading-relaxed"><strong class="text-white/90">Nos agents terrain</strong> vérifient la conformité. 80 % libérés par étape.</p>
       </div>
-
-      <div class="bg-[#1B650C] p-6 rounded-2xl relative z-10 border border-white/20 shadow-xl shadow-primary/20" data-aos="fade-up" data-aos-delay="300">
-        <div class="w-12 h-12 rounded-full bg-white text-primary mb-4 flex items-center justify-center text-xl font-bold font-display">4</div>
-        <h3 class="font-bold text-base mb-3">Validation et libération</h3>
-        <p class="text-sm text-white/90">Vous confirmez la conformité du travail. Les 20 % restants sont libérés sous 48 h. Commission de 8 % déduite.</p>
+      <div class="bg-[#1B650C] p-5 md:p-6 rounded-2xl relative z-10 border border-white/20 shadow-xl shadow-primary/20" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-11 h-11 md:w-12 md:h-12 rounded-full bg-white text-primary mb-3 flex items-center justify-center text-lg font-bold font-display">4</div>
+        <h3 class="font-bold text-base mb-2">Validation finale</h3>
+        <p class="text-sm text-white/90 leading-relaxed">Vous confirmez. Les 20 % restants sont libérés sous 48 h.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 5 — TRUST TIERS
-     ════════════════════════════════════════════════════════════ -->
-<section class="max-w-7xl mx-auto px-6 py-20" data-aos="fade-up">
-  <div class="text-center mb-12">
+<!-- SECTION 5 — TRUST TIERS -->
+<section class="max-w-7xl mx-auto px-5 md:px-6 py-16 md:py-20" data-aos="fade-up">
+  <div class="text-center mb-10 md:mb-12">
     <div class="chip bg-gold-light text-gold mb-4">Confiance progressive</div>
-    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">4 niveaux de confiance. Votre sécurité avant tout.</h2>
-    <p class="text-on-muted max-w-xl mx-auto">Chaque ouvrier qualifié progresse selon ses résultats réels, validés par nos clients et nos agents terrain.</p>
+    <h2 class="font-extrabold text-on-surface mb-4">4 niveaux de confiance.</h2>
+    <p class="text-on-muted max-w-xl mx-auto leading-relaxed">Chaque ouvrier qualifié progresse selon ses résultats réels, validés par nos clients et nos agents terrain.</p>
   </div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
     <div class="base-card text-center">
-      <div class="text-3xl mb-3">🔰</div>
-      <h4 class="font-bold text-on-surface mb-1">Membre</h4>
-      <p class="text-xs text-on-muted">Inscrit, identité déclarée</p>
+      <div class="text-2xl md:text-3xl mb-2">🔰</div>
+      <h4 class="font-bold text-on-surface mb-1 text-sm md:text-base">Membre</h4>
+      <p class="text-xs text-on-muted leading-relaxed">Inscrit, identité déclarée</p>
     </div>
     <div class="base-card text-center border-primary/30">
-      <div class="text-3xl mb-3">✅</div>
-      <h4 class="font-bold text-primary mb-1">Vérifié</h4>
-      <p class="text-xs text-on-muted">Visite terrain et CNIB vérifiée</p>
+      <div class="text-2xl md:text-3xl mb-2">✅</div>
+      <h4 class="font-bold text-primary mb-1 text-sm md:text-base">Vérifié</h4>
+      <p class="text-xs text-on-muted leading-relaxed">Visite terrain, CNIB vérifiée</p>
     </div>
     <div class="base-card text-center border-gold/40">
-      <div class="text-3xl mb-3">⭐</div>
-      <h4 class="font-bold text-gold mb-1">ProSûr</h4>
-      <p class="text-xs text-on-muted">Plus de 5 chantiers sans litige</p>
+      <div class="text-2xl md:text-3xl mb-2">⭐</div>
+      <h4 class="font-bold text-gold mb-1 text-sm md:text-base">ProSûr</h4>
+      <p class="text-xs text-on-muted leading-relaxed">5+ chantiers sans litige</p>
     </div>
     <div class="base-card text-center border-gold/60 bg-gold-light">
-      <div class="text-3xl mb-3">🏆</div>
-      <h4 class="font-bold text-gold mb-1">ProSûr Élite</h4>
-      <p class="text-xs text-on-muted">Recommandé pour les grands projets</p>
+      <div class="text-2xl md:text-3xl mb-2">🏆</div>
+      <h4 class="font-bold text-gold mb-1 text-sm md:text-base">ProSûr Élite</h4>
+      <p class="text-xs text-on-muted leading-relaxed">Grands projets et diaspora</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 5b — TRUST & EXECUTION LOOP
-     Emphasizes HUMAN agents at every step — no chatbot/robot
-     ════════════════════════════════════════════════════════════ -->
-<section class="bg-surface-low py-16" data-aos="fade-up">
-  <div class="max-w-6xl mx-auto px-6 text-center">
-    <div class="chip bg-primary-light text-primary mb-6">Processus vérifié</div>
-    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-4">Un accompagnement humain, de bout en bout</h2>
-    <p class="text-on-muted mb-10 max-w-xl mx-auto text-sm">Chaque mission est suivie personnellement par nos agents. Pas de réponse automatique : un interlocuteur dédié vous accompagne à chaque étape.</p>
+<!-- SECTION 5b — HUMAN EXECUTION LOOP -->
+<section class="bg-surface-low py-14 md:py-16" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-5 md:px-6 text-center">
+    <div class="chip bg-primary-light text-primary mb-5">Accompagnement humain</div>
+    <h2 class="font-extrabold text-on-surface mb-4">Un interlocuteur dédié, de bout en bout</h2>
+    <p class="text-on-muted mb-8 md:mb-10 max-w-xl mx-auto leading-relaxed">Chaque mission est suivie personnellement par nos agents. Pas de réponse automatique : une personne qui connaît votre dossier.</p>
 
-    <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">edit_note</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">edit_note</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Demande</p>
-        <p class="text-[0.6rem] text-on-muted">WhatsApp ou web</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Demande</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">search</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">search</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Diagnostic</p>
-        <p class="text-[0.6rem] text-on-muted">2 000 CFA</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Diagnostic</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">handshake</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">handshake</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Sélection</p>
-        <p class="text-[0.6rem] text-on-muted">Par nos agents</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Sélection</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">visibility</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">visibility</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Contrôle</p>
-        <p class="text-[0.6rem] text-on-muted">Photos et rapports</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Contrôle</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-[#B8860B] flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">account_balance</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#B8860B] flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">account_balance</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Paiement</p>
-        <p class="text-[0.6rem] text-on-muted">80 % par étape</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Paiement</p>
       </div>
       <div class="flex flex-col items-center">
-        <div class="w-14 h-14 rounded-full bg-[#B8860B] flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-white text-2xl">verified</span>
+        <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#B8860B] flex items-center justify-center mb-2">
+          <span class="material-symbols-outlined text-white text-xl md:text-2xl">verified</span>
         </div>
-        <p class="text-xs font-bold text-on-surface">Validation</p>
-        <p class="text-[0.6rem] text-on-muted">20 % libérés</p>
+        <p class="text-[0.7rem] md:text-xs font-bold text-on-surface">Validation</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 6 — SERVICES GRID
-     ════════════════════════════════════════════════════════════ -->
-<section class="py-16" data-aos="fade-up">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-3 text-center">Services disponibles</h2>
-    <p class="text-on-muted text-center mb-10 text-sm">Phase 1 — Ouagadougou. D'autres corps de métier seront ajoutés progressivement.</p>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-3 transition-all hover:border-primary hover:shadow-md">
-        <span class="material-symbols-outlined text-4xl text-primary">architecture</span> Maçonnerie
+<!-- SECTION 6 — SERVICES -->
+<section class="py-14 md:py-16" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-5 md:px-6">
+    <h2 class="font-extrabold text-on-surface mb-3 text-center">Services disponibles</h2>
+    <p class="text-on-muted text-center mb-8 md:mb-10 leading-relaxed">Phase 1 — Ouagadougou. D'autres corps de métier seront ajoutés progressivement.</p>
+    <div class="grid grid-cols-3 gap-4 md:gap-6">
+      <div class="bg-white p-4 md:p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-2 md:gap-3 transition-all hover:border-primary hover:shadow-md">
+        <span class="material-symbols-outlined text-3xl md:text-4xl text-primary">architecture</span>
+        <span class="text-sm md:text-base">Maçonnerie</span>
       </div>
-      <div class="bg-white p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-3 transition-all hover:border-primary hover:shadow-md">
-        <span class="material-symbols-outlined text-4xl text-primary">plumbing</span> Plomberie
+      <div class="bg-white p-4 md:p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-2 md:gap-3 transition-all hover:border-primary hover:shadow-md">
+        <span class="material-symbols-outlined text-3xl md:text-4xl text-primary">plumbing</span>
+        <span class="text-sm md:text-base">Plomberie</span>
       </div>
-      <div class="bg-white p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-3 transition-all hover:border-primary hover:shadow-md">
-        <span class="material-symbols-outlined text-4xl text-primary">electric_bolt</span> Électricité
+      <div class="bg-white p-4 md:p-6 rounded-xl border border-outline font-semibold text-center flex flex-col items-center gap-2 md:gap-3 transition-all hover:border-primary hover:shadow-md">
+        <span class="material-symbols-outlined text-3xl md:text-4xl text-primary">electric_bolt</span>
+        <span class="text-sm md:text-base">Électricité</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 7 — TESTIMONIALS
-     ════════════════════════════════════════════════════════════ -->
-<section class="max-w-7xl mx-auto px-6 py-20" data-aos="fade-up">
-  <div class="text-center mb-12">
+<!-- SECTION 7 — TESTIMONIALS -->
+<section class="max-w-7xl mx-auto px-5 md:px-6 py-16 md:py-20" data-aos="fade-up">
+  <div class="text-center mb-10 md:mb-12">
     <div class="chip bg-primary-light text-primary mb-4">Retours d'expérience</div>
-    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface">Ce que disent nos utilisateurs</h2>
+    <h2 class="font-extrabold text-on-surface">Ce que disent nos utilisateurs</h2>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
     <div class="base-card">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-full bg-primary-light flex items-center justify-center font-bold text-primary">AF</div>
-        <div>
+        <div class="w-11 h-11 rounded-full bg-primary-light flex items-center justify-center font-bold text-primary text-sm">AF</div>
+        <div class="flex-1 min-w-0">
           <p class="font-bold text-sm">Adama F.</p>
           <p class="text-xs text-on-muted">Client — Ouagadougou</p>
         </div>
-        <div class="ml-auto flex gap-0.5">
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
+        <div class="flex gap-0.5 flex-shrink-0">
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
         </div>
       </div>
-      <p class="text-on-muted text-sm italic leading-relaxed">"J'ai payé le diagnostic, un professionnel est venu le lendemain. Devis validé sur WhatsApp. Mon argent n'a été libéré qu'à ma confirmation finale. Enfin un système sérieux."</p>
+      <p class="text-on-muted text-sm italic leading-relaxed">«&nbsp;J'ai payé le diagnostic, un professionnel est venu le lendemain. Devis validé sur WhatsApp. Mon argent n'a été libéré qu'à ma confirmation finale. Enfin un système sérieux.&nbsp;»</p>
     </div>
-
     <div class="base-card border-primary/30">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold text-white">IK</div>
-        <div>
+        <div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center font-bold text-white text-sm">IK</div>
+        <div class="flex-1 min-w-0">
           <p class="font-bold text-sm">Ibrahim K.</p>
           <p class="text-xs text-on-muted">Plombier ProSûr — Secteur 22</p>
         </div>
-        <div class="ml-auto flex gap-0.5">
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
+        <div class="flex gap-0.5 flex-shrink-0">
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
         </div>
       </div>
-      <p class="text-on-muted text-sm italic leading-relaxed">"Avant FasoSmart, les clients payaient parfois 3 semaines après. Maintenant l'argent est déjà sécurisé avant que je commence. Je n'ai plus besoin de courir après mon dû."</p>
+      <p class="text-on-muted text-sm italic leading-relaxed">«&nbsp;Avant FasoSmart, les clients payaient parfois 3 semaines après. Maintenant l'argent est déjà sécurisé avant que je commence. Je n'ai plus besoin de courir après mon dû.&nbsp;»</p>
     </div>
-
     <div class="base-card border-gold/40">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-12 h-12 rounded-full bg-gold-light flex items-center justify-center font-bold text-gold">MS</div>
-        <div>
+        <div class="w-11 h-11 rounded-full bg-gold-light flex items-center justify-center font-bold text-gold text-sm">MS</div>
+        <div class="flex-1 min-w-0">
           <p class="font-bold text-sm">Mariam S.</p>
-          <p class="text-xs text-on-muted">Diaspora — Paris, France</p>
+          <p class="text-xs text-on-muted">Diaspora — Paris</p>
         </div>
-        <div class="ml-auto flex gap-0.5">
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
-          <span class="material-symbols-outlined text-gold text-[16px] icon-filled">star</span>
+        <div class="flex gap-0.5 flex-shrink-0">
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
+          <span class="material-symbols-outlined text-gold text-[14px] icon-filled">star</span>
         </div>
       </div>
-      <p class="text-on-muted text-sm italic leading-relaxed">"Je gère la construction de ma maison depuis Paris. Chaque semaine, je reçois des photos avec ma référence de suivi. L'agent qui me suit connaît mon dossier par cœur. J'ai enfin l'esprit tranquille."</p>
+      <p class="text-on-muted text-sm italic leading-relaxed">«&nbsp;Je gère la construction de ma maison depuis Paris. Chaque semaine, je reçois des photos avec ma référence de suivi. L'agent qui me suit connaît mon dossier par cœur.&nbsp;»</p>
     </div>
-
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 8 — FAQ
-     ════════════════════════════════════════════════════════════ -->
-<section class="max-w-4xl mx-auto px-6 py-20" data-aos="fade-up">
-  <div class="text-center mb-10">
-    <h2 class="text-3xl font-extrabold text-on-surface mb-3">Questions fréquentes</h2>
+<!-- SECTION 8 — FAQ -->
+<section class="max-w-3xl mx-auto px-5 md:px-6 py-16 md:py-20" data-aos="fade-up">
+  <div class="text-center mb-8 md:mb-10">
+    <h2 class="font-extrabold text-on-surface mb-3">Questions fréquentes</h2>
     <p class="text-on-muted">Tout ce que vous devez savoir avant de confier vos travaux.</p>
   </div>
   <div class="space-y-3">
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Dois-je tout payer à l'avance ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">Non. Vous réglez d'abord 2 000 CFA pour le diagnostic terrain (montant déduit de la facture finale). Le reste du devis est sécurisé sous dépôt de garantie : 80 % sont libérés progressivement à chaque étape validée, et les 20 % restants uniquement après votre confirmation définitive.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Dois-je tout payer à l'avance&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">Non. Vous réglez d'abord 2 000 CFA pour le diagnostic terrain (montant déduit de la facture finale). Le reste du devis est sécurisé sous dépôt de garantie&nbsp;: 80 % sont libérés progressivement à chaque étape validée, et les 20 % restants uniquement après votre confirmation définitive.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Et si le travail n'est pas conforme ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">Vous signalez le problème sur WhatsApp. Les fonds restent bloqués. Notre équipe intervient sous 24 h : soit le professionnel reprend le travail sans frais supplémentaires, soit vous êtes remboursé intégralement. Tout professionnel récidiviste est exclu définitivement du réseau.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Et si le travail n'est pas conforme&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">Vous signalez le problème sur WhatsApp. Les fonds restent bloqués. Notre équipe intervient sous 24 h&nbsp;: soit le professionnel reprend le travail sans frais supplémentaires, soit vous êtes remboursé intégralement.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Comment vérifiez-vous les ouvriers qualifiés ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">Notre agent terrain se déplace physiquement sur le lieu de travail du professionnel. Il contrôle la CNIB, vérifie l'expérience réelle et les références sur chantier. Le badge « Vérifié » n'est jamais attribué sans visite physique confirmée.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Comment vérifiez-vous les ouvriers qualifiés&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">Notre agent terrain se déplace physiquement sur le lieu de travail du professionnel. Il contrôle la CNIB, vérifie l'expérience réelle et les références sur chantier. Le badge « Vérifié » n'est jamais attribué sans visite physique confirmée.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Je suis en Europe — comment puis-je régler ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">La diaspora peut régler par virement SEPA ou PayPal. Dounya FasoSmart gère la conversion et le dépôt de garantie au Burkina Faso. Vous recevez un rapport photo chaque semaine accompagné de votre référence de suivi, et vous validez chaque étape depuis votre téléphone en Europe.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Je suis en Europe — comment puis-je régler&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">La diaspora peut régler par virement SEPA ou PayPal. Dounya FasoSmart gère la conversion et le dépôt de garantie au Burkina Faso. Vous recevez un rapport photo chaque semaine accompagné de votre référence de suivi.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Combien cela coûte-t-il exactement ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">2 000 CFA de diagnostic (déduits de la facture finale), puis 8 % de commission sur le montant validé, prélevés uniquement à la libération des fonds. Aucun abonnement, aucuns frais cachés. Pour les ouvriers qualifiés : l'inscription au réseau est entièrement gratuite, sans commission prélevée sur leur rémunération.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Combien cela coûte-t-il exactement&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">2 000 CFA de diagnostic (déduits du total), puis 8 % de commission prélevés uniquement à la libération des fonds. Aucun abonnement, aucuns frais cachés. Pour les ouvriers qualifiés&nbsp;: l'inscription est entièrement gratuite, sans commission sur leur rémunération.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">Qui répond à mes messages sur WhatsApp ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">Ce sont nos agents humains, basés à Ouagadougou, qui vous répondent directement. Aucune réponse automatique, aucun système robotisé. Votre interlocuteur connaît votre dossier et vous accompagne personnellement du premier message jusqu'à la validation finale de vos travaux.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">Qui répond à mes messages&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">Ce sont nos agents, basés à Ouagadougou, qui vous répondent directement. Aucune réponse automatique. Votre interlocuteur connaît votre dossier et vous accompagne personnellement du premier message jusqu'à la validation finale.</p></div>
     </div>
 
-    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-      <div class="flex items-center justify-between p-6">
-        <h3 class="font-bold text-on-surface pr-4">À quoi sert la référence de suivi DS-PRO ?</h3>
-        <span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span>
-      </div>
-      <div class="faq-answer px-6">
-        <p class="text-on-muted">Chaque demande reçoit un identifiant unique au format #DS-PRO-26-XXXX. Cette référence vous permet de suivre l'état de votre dossier à chaque étape : diagnostic, sélection du professionnel, avancement du chantier et libération des fonds. Communiquez-la dans chaque échange WhatsApp pour un traitement prioritaire.</p>
-      </div>
+    <div class="faq-item bg-white rounded-2xl border border-outline overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open')}">
+      <div class="flex items-center justify-between p-5 md:p-6"><h3 class="font-bold text-on-surface pr-4">À quoi sert la référence DS-PRO&nbsp;?</h3><span class="material-symbols-outlined text-primary flex-shrink-0 faq-arrow">expand_more</span></div>
+      <div class="faq-answer px-5 md:px-6"><p class="text-on-muted leading-relaxed">Chaque demande reçoit un identifiant unique au format #DS-PRO-26-XXXX. Cette référence permet de suivre votre dossier à chaque étape. Communiquez-la dans chaque échange WhatsApp pour un traitement prioritaire.</p></div>
     </div>
 
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════════════════════
-     SECTION 9 — FINAL CTA
-     ════════════════════════════════════════════════════════════ -->
-<section class="grad-primary py-24 text-center text-white" data-aos="zoom-in">
-  <div class="max-w-3xl mx-auto px-6">
-    <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Prêt ? Votre ouvrier qualifié vérifié vous attend.</h2>
-    <p class="text-xl mb-4 text-white/90">Gratuit pour les professionnels. Sécurisé pour les clients. Rigoureux pour tous.</p>
-    <p class="text-sm mb-10 text-white/60">Nos agents vous répondent personnellement — pas de réponse automatique.</p>
+<!-- SECTION 9 — FINAL CTA -->
+<section class="grad-primary py-20 md:py-24 text-center text-white" data-aos="zoom-in">
+  <div class="max-w-3xl mx-auto px-5 md:px-6">
+    <h2 class="text-2xl md:text-5xl font-extrabold mb-5">Prêt ? Votre ouvrier qualifié vérifié vous attend.</h2>
+    <p class="text-lg md:text-xl mb-3 text-white/90">Gratuit pour les professionnels. Sécurisé pour les clients.</p>
+    <p class="text-sm mb-8 md:mb-10 text-white/60">Nos agents vous répondent personnellement — pas de réponse automatique.</p>
     <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20souhaite%20trouver%20un%20ouvrier%20qualifi%C3%A9%20v%C3%A9rifi%C3%A9%20pour%20mes%20travaux%20via%20Dounya%20FasoSmart."
        target="_blank" rel="noopener"
-       class="bg-white text-primary font-bold text-sm px-8 py-4 rounded-xl shadow-lg inline-flex items-center gap-2 hover:scale-105 transition-all">
+       class="bg-white text-primary font-bold text-base px-8 py-4 rounded-xl shadow-lg inline-flex items-center gap-2 hover:scale-105 transition-all">
       <span class="material-symbols-outlined text-[20px]">chat</span>
-      Écrire à notre équipe
+      Trouver mon ouvrier qualifié
     </a>
-    <p class="text-xs text-white/60 mt-8 font-semibold uppercase tracking-widest">
-      Professionnels vérifiés sur le terrain • Dépôt de garantie Orange Money • Litige résolu en 24 h
+    <p class="text-xs text-white/50 mt-8 font-semibold uppercase tracking-widest">
+      Professionnels vérifiés • Dépôt de garantie • Litige résolu en 24 h
     </p>
   </div>
 </section>
 
 </main>
 
-<!-- ════════════════════════════════════════════════════════════
-     FOOTER
-     ════════════════════════════════════════════════════════════ -->
-<footer class="bg-[#1C1C1C] pt-20 pb-8 text-white/70 font-body text-sm">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-
+<!-- FOOTER -->
+<footer class="bg-[#1C1C1C] pt-16 md:pt-20 pb-8 text-white/70 font-body text-sm">
+  <div class="max-w-7xl mx-auto px-5 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12 md:mb-16">
     <div>
-      <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-10 mb-4" data-keep>
-      <p>Infrastructure de confiance pour le secteur informel au Burkina Faso. Vérification terrain et dépôt de garantie sécurisé.</p>
+      <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-9 mb-4" data-keep>
+      <p class="leading-relaxed">Infrastructure de confiance pour le secteur informel au Burkina Faso. Vérification terrain et dépôt de garantie sécurisé.</p>
     </div>
-
-    <div class="grid grid-cols-2 gap-4">
-      <a href="index.html" class="text-white font-bold hover:text-primary transition-colors">Accueil</a>
-      <a href="fonctionnement.html" class="hover:text-white transition-colors">Fonctionnement</a>
-      <a href="artisans.html" class="hover:text-white transition-colors">Ouvriers qualifiés</a>
-      <a href="clients.html" class="hover:text-white transition-colors">Clients locaux</a>
-      <a href="diaspora.html" class="hover:text-white transition-colors text-primary font-bold">Diaspora</a>
-      <a href="tarifs.html" class="hover:text-white transition-colors">Tarifs</a>
-      <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
-      <a href="organisations.html" class="hover:text-white transition-colors">Organisations</a>
+    <div class="grid grid-cols-2 gap-3">
+      <a href="index.html" class="text-white font-bold hover:text-primary transition-colors py-1">Accueil</a>
+      <a href="fonctionnement.html" class="hover:text-white transition-colors py-1">Fonctionnement</a>
+      <a href="artisans.html" class="hover:text-white transition-colors py-1">Ouvriers qualifiés</a>
+      <a href="clients.html" class="hover:text-white transition-colors py-1">Clients locaux</a>
+      <a href="diaspora.html" class="hover:text-white transition-colors py-1">Diaspora</a>
+      <a href="tarifs.html" class="hover:text-white transition-colors py-1">Tarifs</a>
+      <a href="contact.html" class="hover:text-white transition-colors py-1">Contact</a>
+      <a href="organisations.html" class="hover:text-white transition-colors py-1">Organisations</a>
     </div>
-
     <div>
       <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs">Contact</h4>
       <p class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-[16px]">phone</span> +226 25 30 00 00</p>
@@ -770,82 +692,98 @@ document.addEventListener('DOMContentLoaded', function() {
       <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">location_on</span> Ave de l'Indépendance, Ouagadougou</p>
     </div>
   </div>
-
-  <div class="max-w-7xl mx-auto px-6 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
-    <p>&copy; 2026 Dounya FasoSmart &bull; Ouagadougou, Burkina Faso &bull; Tous droits réservés</p>
-    <div class="flex gap-4 mt-4 md:mt-0">
-      <a href="politique.html" class="hover:text-white transition-colors">Politique de confidentialité</a>
-    </div>
+  <div class="max-w-7xl mx-auto px-5 md:px-6 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs gap-4">
+    <p>&copy; 2026 Dounya FasoSmart &bull; Ouagadougou, Burkina Faso</p>
+    <a href="politique.html" class="hover:text-white transition-colors">Politique de confidentialité</a>
   </div>
 </footer>
 
 <!-- ════════════════════════════════════════════════════════════
-     SCRIPTS — AOS loaded separately to avoid crashing menu JS
+     SCRIPTS
      ════════════════════════════════════════════════════════════ -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
-  // ── AOS (wrapped in try-catch — CDN failure must not break page) ──
-  try { AOS.init({ once: true, duration: 800, offset: 50 }); } catch(e) { console.warn('AOS non disponible:', e); }
+// ── MOBILE DRAWER (no dependencies, runs immediately) ────────
+(function() {
+  var btn = document.getElementById('menu-toggle');
+  var overlay = document.getElementById('mobile-overlay');
+  var drawer = document.getElementById('mobile-drawer');
+  var closeBtn = document.getElementById('drawer-close');
 
-  // ── REFERENCE ID GENERATOR ──────────────────────────────────
+  if (!btn || !overlay || !drawer) return;
+
+  function openMenu() {
+    overlay.classList.add('is-active');
+    drawer.classList.add('is-active');
+    document.body.style.overflow = 'hidden';
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closeMenu() {
+    overlay.classList.remove('is-active');
+    drawer.classList.remove('is-active');
+    document.body.style.overflow = '';
+    btn.setAttribute('aria-expanded', 'false');
+  }
+
+  btn.addEventListener('click', function(e) { e.stopPropagation(); openMenu(); });
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  // Close on link tap
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeMenu();
+  });
+})();
+</script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  try { AOS.init({ once: true, duration: 800, offset: 50 }); } catch(e) {}
+
+  // ── REFERENCE ID ──
   (function() {
     var el = document.getElementById('hero-ref-id');
     if (el) {
-      var year = new Date().getFullYear().toString().slice(-2);
-      var seq = Math.floor(1000 + Math.random() * 9000);
-      el.textContent = '#DS-PRO-' + year + '-' + seq;
+      var y = new Date().getFullYear().toString().slice(-2);
+      el.textContent = '#DS-PRO-' + y + '-' + Math.floor(1000 + Math.random() * 9000);
     }
   })();
 
-  // ── LOW DATA MODE — REAL BANDWIDTH SAVINGS ──────────────────
-  var lowDataToggle = document.getElementById('low-data-toggle');
+  // ── LOW DATA MODE ──
+  var toggle1 = document.getElementById('low-data-toggle');
+  var toggle2 = document.getElementById('low-data-toggle-mobile');
 
-  function activateLowData() {
-    document.body.classList.add('low-data-mode');
-    document.querySelectorAll('img:not([data-keep])').forEach(function(img) {
-      if (img.getAttribute('src') && !img.dataset.origSrc) {
-        img.dataset.origSrc = img.getAttribute('src');
-        img.removeAttribute('src');
-      }
-      if (img.getAttribute('srcset') && !img.dataset.origSrcset) {
-        img.dataset.origSrcset = img.getAttribute('srcset');
-        img.removeAttribute('srcset');
-      }
-    });
-    document.querySelectorAll('picture source').forEach(function(src) {
-      if (src.getAttribute('srcset') && !src.dataset.origSrcset) {
-        src.dataset.origSrcset = src.getAttribute('srcset');
-        src.removeAttribute('srcset');
-      }
-    });
-    localStorage.setItem('fasosmart_lowdata', 'true');
+  function setLowData(active) {
+    if (active) {
+      document.body.classList.add('low-data-mode');
+      document.querySelectorAll('img:not([data-keep])').forEach(function(img) {
+        if (img.getAttribute('src') && !img.dataset.origSrc) {
+          img.dataset.origSrc = img.getAttribute('src');
+          img.removeAttribute('src');
+        }
+      });
+    } else {
+      document.body.classList.remove('low-data-mode');
+      document.querySelectorAll('[data-orig-src]').forEach(function(el) {
+        el.setAttribute('src', el.dataset.origSrc);
+        delete el.dataset.origSrc;
+      });
+    }
+    localStorage.setItem('fasosmart_lowdata', active);
+    if (toggle1) toggle1.checked = active;
+    if (toggle2) toggle2.checked = active;
   }
 
-  function deactivateLowData() {
-    document.body.classList.remove('low-data-mode');
-    document.querySelectorAll('[data-orig-src]').forEach(function(el) {
-      el.setAttribute('src', el.dataset.origSrc);
-      delete el.dataset.origSrc;
-    });
-    document.querySelectorAll('[data-orig-srcset]').forEach(function(el) {
-      el.setAttribute('srcset', el.dataset.origSrcset);
-      delete el.dataset.origSrcset;
-    });
-    localStorage.setItem('fasosmart_lowdata', 'false');
-  }
+  if (localStorage.getItem('fasosmart_lowdata') === 'true') setLowData(true);
 
-  if (localStorage.getItem('fasosmart_lowdata') === 'true') {
-    lowDataToggle.checked = true;
-    activateLowData();
-  }
-
-  lowDataToggle.addEventListener('change', function(e) {
-    e.target.checked ? activateLowData() : deactivateLowData();
-  });
+  if (toggle1) toggle1.addEventListener('change', function(e) { setLowData(e.target.checked); });
+  if (toggle2) toggle2.addEventListener('change', function(e) { setLowData(e.target.checked); });
 </script>
 
 <script src="global.js"></script>
-
 </body>
 </html>

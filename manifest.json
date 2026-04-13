@@ -1,0 +1,21 @@
+{
+  "name": "Dounya FasoSmart",
+  "short_name": "FasoSmart",
+  "description": "ProS\u00fbr - La plateforme de confiance pour artisans et clients.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAF9F5",
+  "theme_color": "#1B650C",
+  "icons": [
+    {
+      "src": "favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

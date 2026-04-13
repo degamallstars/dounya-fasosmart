@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Institutions | Dounya FasoSmart</title>
+<meta name="description" content="Solutions institutionnelles FasoSmart pour ONG, Banques et PME.">
+<!-- CSP commented out for local dev -->
+<link rel="manifest" href="manifest.json">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: { extend: { colors: { "navy":"#0B132B", "navy-light":"#1C2541", "gold":"#B8860B" }, fontFamily: { sans:["Inter"] } } }
+}
+</script>
+<style>
+        .material-symbols-outlined { font-family: "Material Symbols Outlined" !important; font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
+
+  body { font-family: 'Inter', sans-serif; background-color: #0B132B; color: #FFFFFF; }
+</style>
+</head>
+<body class="antialiased">
+
+<nav class="fixed top-0 w-full z-[100] bg-surface/95 backdrop-blur-md border-b border-outline py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="flex flex-col no-underline">
+          <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-10">
+        </a>
+        <div class="hidden md:flex gap-8 font-body font-semibold text-sm items-center">
+          <a href="index.html" class="text-on-muted hover:text-primary transition-colors">Accueil</a>
+          <a href="fonctionnement.html" class="text-on-muted hover:text-primary transition-colors">Fonctionnement</a>
+          <div class="relative group">
+            <button class="text-on-muted hover:text-primary transition-colors flex items-center gap-1">Écosystèmes <span class="material-symbols-outlined text-sm">expand_more</span></button>
+            <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
+              <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
+                <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients Locaux</a>
+                <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
+                <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="text-on-muted hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="hidden md:flex items-center gap-6">
+          <div class="flex items-center gap-2 border border-outline rounded-full px-3 py-1 bg-white">
+            <span class="text-xs font-bold text-primary">FR</span>
+            <span class="text-outline text-xs">|</span>
+            <a href="en/index.html" class="text-xs font-bold text-on-muted hover:text-primary transition-colors">EN</a>
+          </div>
+          <label class="flex items-center cursor-pointer gap-2 title='Low Data Mode'">
+            <input type="checkbox" id="low-data-toggle" class="sr-only peer">
+            <span class="text-[0.65rem] font-bold uppercase tracking-wider text-on-muted">Mode éco.</span>
+            <div class="relative w-9 h-5 bg-outline rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <button class="md:hidden text-primary"><span class="material-symbols-outlined text-3xl">menu</span></button>
+    </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 py-24 text-left">
+  <div class="mb-4 text-gold text-sm tracking-widest uppercase">ProSûr Enterprise</div>
+  <h1 class="text-4xl md:text-5xl font-light tracking-tight mb-6">Solutions institutionnelles.</h1>
+  <p class="text-xl text-white/70 font-light max-w-2xl mb-12">Pour les banques, ONG, institutions gouvernementales et sous-traitants industriels cherchant à sécuriser les transactions du secteur informel.</p>
+  <a href="mailto:partenaires@fasosmart.bf" class="bg-white text-navy font-bold px-8 py-4 text-sm tracking-wider uppercase inline-block hover:bg-gold transition-colors">Nous contacter</a>
+</section>
+
+<section class="max-w-4xl mx-auto px-6 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-navy-light p-8 border border-white/10">
+      <h3 class="font-bold text-xl mb-4 text-gold">Digital SOPs & Optimisation</h3>
+      <p class="text-sm text-white/60">Détails complets disponibles sur demande. Contactez l’équipe fondatrice directement.</p>
+    </div>
+    <div class="bg-navy-light p-8 border border-white/10">
+      <h3 class="font-bold text-xl mb-4 text-gold">Resource Planning & Transformation</h3>
+      <p class="text-sm text-white/60">Détails complets disponibles sur demande. Contactez l’équipe fondatrice directement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Formspree RFP -->
+<section class="max-w-4xl mx-auto px-6 py-24">
+  <h2 class="text-2xl font-light mb-8">Déposer un appel d'offres (RFP)</h2>
+  <form action="https://formspree.io/f/xbjvkqnw" method="POST" class="bg-navy-light p-8 border border-white/10 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-xs uppercase tracking-widest text-white/50 mb-2">Organisation</label>
+      <input type="text" name="organisation" required class="w-full bg-navy border border-white/20 text-white rounded-none focus:ring-0 focus:border-gold p-3">
+    </div>
+    <div>
+      <label class="block text-xs uppercase tracking-widest text-white/50 mb-2">Nom et rôle</label>
+      <input type="text" name="name" required class="w-full bg-navy border border-white/20 text-white rounded-none focus:ring-0 focus:border-gold p-3">
+    </div>
+    <div class="md:col-span-2">
+      <label class="block text-xs uppercase tracking-widest text-white/50 mb-2">Type de besoin</label>
+      <select name="type" class="w-full bg-navy border border-white/20 text-white rounded-none focus:ring-0 focus:border-gold p-3">
+        <option>Auditing de flotte</option>
+        <option>Vérification des talents informels</option>
+        <option>Mise en conformité</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block text-xs uppercase tracking-widest text-white/50 mb-2">Description brève</label>
+      <textarea name="description" rows="4" required class="w-full bg-navy border border-white/20 text-white rounded-none focus:ring-0 focus:border-gold p-3"></textarea>
+    </div>
+    <div class="md:col-span-2 flex items-center justify-between">
+      <label class="flex items-center gap-3 text-sm text-white/50 cursor-pointer">
+        <input type="checkbox" name="consent" required class="bg-navy border-white/20 text-gold focus:ring-0"> J'accepte la politique de confidentialité (GDPR).
+      </label>
+      <button type="submit" class="bg-gold text-navy font-bold px-8 py-3 text-sm uppercase tracking-wider hover:bg-white transition-colors">Soumettre</button>
+    </div>
+  </form>
+</section>
+
+</body>
+</html>

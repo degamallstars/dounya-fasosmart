@@ -1,0 +1,28 @@
+# Vercel
+.vercel
+
+# Python artifacts
+*.py
+__pycache__/
+*.pyc
+
+# Data / secrets
+professionals_db.json
+*.log
+server.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+
+# Build tools / drafts
+*.pptx
+*.md
+en/
+simulateur-whatsapp.html
+Business_Plan_Dounya_FasoSmart.html
+insert-core-values-and-community.html

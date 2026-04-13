@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clients | Dounya FasoSmart</title>
+  <meta name="description" content="Trouvez un ouvrier qualifié sérieux pour vos travaux au Burkina Faso. Suivi des travaux, paiement encadré et plus de tranquillité.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script>
+  tailwind.config = {
+    theme: { extend: { colors: {
+      "primary":"#1B650C", "primary-dark":"#144D09", "primary-light":"#EBF5E8",
+      "surface":"#FAF9F5", "surface-low":"#F5F3EC", "surface-mid":"#EEEADE",
+      "on-surface":"#1C1C1C", "on-muted":"#535353", "outline":"#DEDCD4", "error":"#BA1A1A",
+    }, fontFamily: { display:["Poppins"], body:["Inter"] } } }
+  }
+  </script>
+  <style>
+    .material-symbols-outlined { font-family: "Material Symbols Outlined" !important; font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
+    body { font-family: 'Inter', sans-serif; background-color: #FAF9F5; color: #1C1C1C; }
+    h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.1; }
+    .grad-primary { background: linear-gradient(135deg, #1B650C 0%, #144D09 100%); }
+    .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  </style>
+</head>
+<body class="overflow-x-hidden antialiased pt-24">
+
+<nav class="fixed top-0 w-full z-[100] bg-surface/95 backdrop-blur-md border-b border-outline py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="flex flex-col no-underline">
+          <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-10">
+        </a>
+        <div class="hidden md:flex gap-8 font-body font-semibold text-sm items-center">
+          <a href="index.html" class="text-on-muted hover:text-primary transition-colors">Accueil</a>
+          <a href="fonctionnement.html" class="text-on-muted hover:text-primary transition-colors">Comment ça marche</a>
+          <div class="relative group">
+            <button class="text-on-muted hover:text-primary transition-colors flex items-center gap-1">Écosystèmes <span class="material-symbols-outlined text-sm">expand_more</span></button>
+            <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
+              <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
+                <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients Locaux</a>
+                <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
+                <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:flex flex-col">
+          <p class="text-xs font-bold text-on-muted">Contact direct</p>
+          <p class="text-sm font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">whatsapp</span> +226 25300000</p>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" data-aos="fade-up">
+  <div>
+    <div class="chip bg-primary-light text-primary mb-6">Clients locaux • Burkina Faso</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-on-surface">
+      Trouvez un ouvrier qualifié sérieux pour vos travaux, en toute sécurité.
+    </h1>
+    <p class="text-lg text-on-muted leading-relaxed mb-6 max-w-lg">
+      Avec Dounya FasoSmart, vous n’avez plus besoin de demander partout ni de choisir au hasard avant de trouver quelqu’un de fiable. Nous vous aidons à trouver un ouvrier qualifié vérifié, avec un suivi clair des travaux et un paiement encadré.
+    </p>
+    <p class="font-extrabold text-primary text-lg mb-8 flex gap-2"><span class="material-symbols-outlined text-[24px]">verified</span> Vous gardez le contrôle. Nous suivons les travaux jusqu’à ce qu’ils soient bien faits.</p>
+    
+    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+      <a href="https://wa.me/22625300000" class="grad-primary text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-all text-center">
+        Faire ma demande sur WhatsApp
+      </a>
+      <a href="#fonctionnement" class="border-2 border-outline hover:border-primary text-on-surface hover:text-primary font-bold px-8 py-4 rounded-xl transition-all text-center">
+        Voir comment ça marche
+      </a>
+    </div>
+  </div>
+  <div class="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
+    <img src="authentic_collaboration_hero.png" alt="Client satisfait" class="w-full h-full object-cover">
+  </div>
+</section>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="bg-surface-low py-24" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-6">Ne confiez plus vos travaux à quelqu’un sans garantie.</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Sans Accompagnement -->
+      <div class="bg-white p-10 rounded-[2rem] border border-outline shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-error/20"></div>
+        <div class="w-12 h-12 rounded-full bg-error/10 text-error flex items-center justify-center mb-6"><span class="material-symbols-outlined">warning</span></div>
+        <h3 class="font-bold text-2xl mb-6 text-on-surface">Sans accompagnement</h3>
+        <ul class="space-y-4 text-on-muted">
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-error mt-0.5">close</span> Vous faites appel à un ouvrier qualifié sans savoir s’il fera correctement le travail.</li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-error mt-0.5">close</span> Vous versez une avance sans être sûr que les travaux seront terminés.</li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-error mt-0.5">close</span> En cas de problème, de retard ou d’abandon du chantier, vous vous débrouillez seul.</li>
+        </ul>
+      </div>
+
+      <!-- Avec Dounya FasoSmart -->
+      <div class="bg-white p-10 rounded-[2rem] border border-primary/30 shadow-xl relative overflow-hidden ring-4 ring-primary-light">
+        <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+        <div class="w-12 h-12 rounded-full bg-primary-light text-primary flex items-center justify-center mb-6"><span class="material-symbols-outlined">verified</span></div>
+        <h3 class="font-bold text-2xl mb-6 text-primary">Avec Dounya FasoSmart</h3>
+        <ul class="space-y-4 text-on-surface font-medium">
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary mt-0.5">check_circle</span> Nous vous aidons à trouver un ouvrier qualifié vérifié selon votre besoin.</li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary mt-0.5">check_circle</span> Le paiement suit des étapes claires, définies dès le départ.</li>
+          <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary mt-0.5">check_circle</span> Nous suivons l’avancement des travaux et intervenons en cas de blocage.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT CA MARCHE -->
+<section id="fonctionnement" class="max-w-7xl mx-auto px-6 py-24" data-aos="fade-up">
+  <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-center border-b-2 border-primary pb-4 inline-block mx-auto">Comment ça marche ?</h2>
+  
+  <div class="grid md:grid-cols-4 gap-8">
+    <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm">
+      <div class="text-5xl font-extrabold text-primary-light mb-4">01</div>
+      <h3 class="font-bold text-lg mb-2">Vous nous expliquez</h3>
+      <p class="text-on-muted text-sm leading-relaxed">Vous nous dites quel travail vous souhaitez faire, où il faut intervenir et dans quel délai.</p>
+    </div>
+    <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm">
+      <div class="text-5xl font-extrabold text-primary-light mb-4">02</div>
+      <h3 class="font-bold text-lg mb-2">Nous cherchons</h3>
+      <p class="text-on-muted text-sm leading-relaxed">Nous identifions un profil d'ouvrier qualifié adapté à votre besoin, à votre zone et à la nature des travaux.</p>
+    </div>
+    <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm mt-0 md:mt-4">
+      <div class="text-5xl font-extrabold text-[#FDF6E3] mb-4 text-[#B8860B]">03</div>
+      <h3 class="font-bold text-lg mb-2">Le travail commence</h3>
+      <p class="text-on-muted text-sm leading-relaxed">Les travaux démarrent selon ce qui a été convenu. Nous suivons l’avancement du dossier.</p>
+    </div>
+    <div class="bg-white border border-outline rounded-2xl p-6 shadow-sm mt-0 md:mt-4">
+      <div class="text-5xl font-extrabold text-primary-light mb-4">04</div>
+      <h3 class="font-bold text-lg mb-2 text-primary">Vous validez</h3>
+      <p class="text-on-muted text-sm leading-relaxed">Une fois le travail confirmé, le paiement est effectué selon les conditions prévues.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAIEMENT -->
+<section class="bg-[#1C1C1C] text-white py-24" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center gap-12 mb-16">
+      <div class="w-20 h-20 rounded-full bg-[#1B650C] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[40px]">lock</span></div>
+      <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">Le paiement n’est effectué que lorsque le travail prévu a été validé.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="bg-[#2a2a2a] p-6 rounded-2xl border border-white/10">
+        <h3 class="font-bold text-lg mb-2 text-[#EBF5E8]">1. Accord clair</h3>
+        <p class="text-white/60 text-sm">Le besoin, le prix et les étapes sont définis avant le début des travaux.</p>
+      </div>
+      <div class="bg-[#2a2a2a] p-6 rounded-2xl border border-white/10">
+        <h3 class="font-bold text-lg mb-2 text-[#EBF5E8]">2. Paiement encadré</h3>
+        <p class="text-white/60 text-sm">Le paiement est organisé selon l’accord établi afin de mieux protéger les deux parties.</p>
+      </div>
+      <div class="bg-[#2a2a2a] p-6 rounded-2xl border border-white/10">
+        <h3 class="font-bold text-lg mb-2 text-[#EBF5E8]">3. Vérification</h3>
+        <p class="text-white/60 text-sm">Selon le dossier, nous suivons l’avancement au moyen d’échanges, de preuves photo ou d’une vérification sur le terrain.</p>
+      </div>
+      <div class="bg-primary-dark p-6 rounded-2xl shadow-xl shadow-black/50 border border-primary">
+        <h3 class="font-bold text-lg mb-2 text-white">4. Paiement effectué</h3>
+        <p class="text-white/90 text-sm">Le paiement est libéré lorsque le travail prévu a été formellement validé par vous.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE UNIFIED PRICING MODEL -->
+<section class="max-w-5xl mx-auto px-6 py-24" data-aos="fade-up">
+  <div class="text-center mb-12">
+    <div class="chip bg-primary-light text-primary mb-4">Transparence Totale</div>
+    <h2 class="text-3xl font-extrabold">Un modèle économique clair et rentable</h2>
+    <p class="text-on-muted max-w-2xl mx-auto mt-4">Pour pouvoir garantir la sécurité de votre projet, FasoSmart applique une tarification totalement transparente. Pas de frais cachés ou de surfacturation du matériel.</p>
+  </div>
+  
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="bg-white border border-outline rounded-3xl p-8 flex flex-col justify-center shadow-lg relative overflow-hidden">
+      <span class="material-symbols-outlined text-[60px] text-surface-mid absolute -bottom-4 -right-4">search</span>
+      <h3 class="text-xl font-bold mb-1 text-on-muted">Avance de diagnostic</h3>
+      <div class="text-4xl font-extrabold text-on-surface mb-4">2 000 <span class="text-lg text-on-muted">CFA</span></div>
+      <p class="text-sm text-on-muted mb-3">Montant fixe payé au tout début pour le déplacement de l'expert.</p>
+      <div class="bg-primary/10 text-primary font-bold text-xs uppercase tracking-widest py-2 px-3 rounded-lg inline-block text-center border border-primary/20">
+        <span class="material-symbols-outlined align-middle text-[14px]">done_all</span> Déduit de votre facture finale
+      </div>
+    </div>
+    
+    <div class="grad-primary text-white rounded-3xl p-8 flex flex-col justify-center shadow-2xl relative overflow-hidden">
+      <span class="material-symbols-outlined text-[60px] text-white/5 absolute -bottom-4 -right-4">verified_user</span>
+      <h3 class="text-xl font-bold mb-1 text-white/80">Frais de Dépôt de garantie & Garantie</h3>
+      <div class="text-4xl font-extrabold text-white mb-4">8% <span class="text-lg text-white/70">du devis</span></div>
+      <p class="text-sm text-white/90">Il s'agit de la commission de la plateforme. Prélevée à la fin du chantier uniquement. Elle couvre les frais de transferts Orange/Wave, la gestion des litiges, et le support client.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES GRID -->
+<section class="bg-surface-low py-24" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-center text-on-surface">Travaux que vous pouvez demander</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">architecture</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Maçonnerie</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Monter un mur, réparer, agrandir ou terminer une partie de la maison.</p>
+      </div>
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">plumbing</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Plomberie</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Réparer une fuite, changer des tuyaux ou réaliser une nouvelle installation.</p>
+      </div>
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">electrical_services</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Électricité</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Installer, réparer ou sécuriser les branchements avec des techniciens qualifiés.</p>
+      </div>
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">format_paint</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Peinture et finition</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Refaire les murs, corriger les défauts et améliorer l’apparence des surfaces.</p>
+      </div>
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">grid_view</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Carrelage</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Poser, remplacer ou reprendre le carrelage dans la maison ou dans un local.</p>
+      </div>
+      <div class="bg-white p-6 justify-center items-start border border-outline rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+        <span class="material-symbols-outlined text-[32px] text-primary mb-4 p-3 bg-primary-light rounded-xl">home_repair_service</span>
+        <h3 class="font-bold text-lg mb-2 text-on-surface">Rénovation</h3>
+        <p class="text-on-muted text-sm leading-relaxed">Remettre en état une maison, une cour, un local commercial ou espace locatif.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-4xl mx-auto px-6 py-24" data-aos="fade-up">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-extrabold mb-4">Questions fréquentes</h2>
+  </div>
+  
+  <div class="space-y-4">
+    <div class="bg-white p-6 md:p-8 rounded-2xl border border-outline shadow-sm">
+      <h3 class="font-bold text-lg mb-3 text-on-surface flex gap-2"><span class="material-symbols-outlined text-primary">help</span> Est-ce que je dois tout payer avant le début des travaux ?</h3>
+      <p class="text-on-muted pl-8 text-sm leading-relaxed">Non. Le paiement suit des étapes claires, selon ce qui a été convenu dès le départ. Seuls les frais de garantie et les acomptes validés sont déposés dans le compte de transit sécurisé (dépôt de garantie).</p>
+    </div>
+    
+    <div class="bg-white p-6 md:p-8 rounded-2xl border border-outline shadow-sm">
+      <h3 class="font-bold text-lg mb-3 text-on-surface flex gap-2"><span class="material-symbols-outlined text-primary">help</span> Que se passe-t-il si l’ouvrier qualifié ne fait pas correctement le travail ?</h3>
+      <p class="text-on-muted pl-8 text-sm leading-relaxed">Il n'est tout simplement pas payé. Nous intervenons pour comprendre la situation, vérifier les éléments disponibles et encadrer la suite du dossier jusqu'à la résolution.</p>
+    </div>
+    
+    <div class="bg-white p-6 md:p-8 rounded-2xl border border-outline shadow-sm">
+      <h3 class="font-bold text-lg mb-3 text-on-surface flex gap-2"><span class="material-symbols-outlined text-primary">help</span> Comment choisissez-vous l’ouvrier qualifié ?</h3>
+      <p class="text-on-muted pl-8 text-sm leading-relaxed">Nous tenons compte du type de travaux, de votre zone résidentielle, de la disponibilité et surtout du niveau de vérification et des notes passées du profil dans notre base de données.</p>
+    </div>
+    
+    <div class="bg-white p-6 md:p-8 rounded-2xl border border-outline shadow-sm">
+      <h3 class="font-bold text-lg mb-3 text-on-surface flex gap-2"><span class="material-symbols-outlined text-primary">help</span> Puis-je suivre les travaux à distance ?</h3>
+      <p class="text-on-muted pl-8 text-sm leading-relaxed">Oui complètement. Selon l'importance du dossier, nous pouvons assurer un suivi avec des mises à jour et, si nécessaire, des photographies partagées via WhatsApp pour chaque jalon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="grad-primary py-20 text-center text-white" data-aos="zoom-in">
+  <div class="max-w-2xl mx-auto px-6">
+    <h2 class="text-3xl font-extrabold mb-4">Besoin d’un ouvrier qualifié sérieux ?</h2>
+    <p class="mb-10 text-white/80 leading-relaxed">Écrivez-nous directement sur WhatsApp. Notre système automatique ou nos agents vous aident à mieux définir votre besoin gratuitiment avant tout déploiement.</p>
+
+    <a href="https://wa.me/22625300000" target="_blank" class="bg-white text-primary px-8 py-5 rounded-xl font-bold inline-flex items-center gap-2 hover:scale-105 transition-transform shadow-2xl">
+      <span class="material-symbols-outlined text-[20px]">chat</span> Faire ma demande sur WhatsApp
+    </a>
+  </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ once: true, duration: 800, offset: 50 });</script>
+<script src="global.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ouvriers Qualifiés | Dounya FasoSmart</title>
+<meta name="description" content="Rejoignez FasoSmart. Votre prochain client vous cherche, soyez visible.">
+<!-- CSP commented out for local dev -->
+<link rel="manifest" href="manifest.json">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: { extend: { colors: {
+    "primary":"#1B650C", "primary-dark":"#144D09", "primary-light":"#EBF5E8",
+    "gold":"#B8860B", "gold-light":"#FDF6E3",
+    "surface":"#FAF9F5", "surface-low":"#F5F3EC", "surface-mid":"#EEEADE",
+    "on-surface":"#1C1C1C", "on-muted":"#535353", "outline":"#DEDCD4", "error":"#BA1A1A",
+  }, fontFamily: { display:["Poppins"], body:["Inter"] } } }
+}
+</script>
+<style>
+        .material-symbols-outlined { font-family: "Material Symbols Outlined" !important; font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
+
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .icon-filled { font-variation-settings: 'FILL' 1 !important; }
+  body { font-family: 'Inter', sans-serif; background-color: #FAF9F5; color: #1C1C1C; }
+  h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.1; }
+  .grad-primary { background: linear-gradient(135deg, #1B650C 0%, #144D09 100%); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .base-card { background: white; border: 1px solid #DEDCD4; border-radius: 24px; padding: 32px; transition: all 200ms ease; }
+</style>
+</head>
+<body class="overflow-x-hidden pt-24">
+
+<nav class="fixed top-0 w-full z-[100] bg-surface/95 backdrop-blur-md border-b border-outline py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="flex flex-col no-underline">
+          <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-10">
+        </a>
+        <div class="hidden md:flex gap-8 font-body font-semibold text-sm items-center">
+          <a href="index.html" class="text-on-muted hover:text-primary transition-colors">Accueil</a>
+          <a href="fonctionnement.html" class="text-on-muted hover:text-primary transition-colors">Fonctionnement</a>
+          <div class="relative group">
+            <button class="text-on-muted hover:text-primary transition-colors flex items-center gap-1">Écosystèmes <span class="material-symbols-outlined text-sm">expand_more</span></button>
+            <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
+              <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
+                <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients Locaux</a>
+                <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
+                <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="text-on-muted hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="hidden md:flex items-center gap-6">
+          <div class="flex items-center gap-2 border border-outline rounded-full px-3 py-1 bg-white">
+            <span class="text-xs font-bold text-primary">FR</span>
+            <span class="text-outline text-xs">|</span>
+            <a href="en/index.html" class="text-xs font-bold text-on-muted hover:text-primary transition-colors">EN</a>
+          </div>
+          <label class="flex items-center cursor-pointer gap-2 title='Low Data Mode'">
+            <input type="checkbox" id="low-data-toggle" class="sr-only peer">
+            <span class="text-[0.65rem] font-bold uppercase tracking-wider text-on-muted">Mode éco.</span>
+            <div class="relative w-9 h-5 bg-outline rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <button class="md:hidden text-primary"><span class="material-symbols-outlined text-3xl">menu</span></button>
+    </div>
+</nav>
+
+<section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+  <div>
+    <div class="chip bg-primary-light text-primary mb-6">Ouvriers Qualifiés</div>
+    <h1 class="text-4xl md:text-[3.5rem] font-extrabold tracking-tight text-on-surface mb-2">Votre prochain client vous cherche. Soyez visible.</h1>
+    <h2 class="text-4xl md:text-[3.5rem] font-extrabold text-primary mb-6">Gratuitement.</h2>
+    <p class="text-lg text-on-muted leading-relaxed mb-8 max-w-lg">
+      Rejoignez le réseau des ouvriers qualifiés de FasoSmart. Un profil visible, des clients proches, un paiement garanti — sans smartphone haut de gamme.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+      <a href="https://wa.me/22625300000?text=Je%20veux%20m%27inscrire%20comme%20artisan%20sur%20FasoSmart" target="_blank" class="grad-primary text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:scale-105 transition-all text-center flex justify-center items-center gap-2">
+        <span class="material-symbols-outlined">chat</span> Commencer par WhatsApp
+      </a>
+      <a href="fonctionnement.html" class="border-2 border-outline hover:border-primary text-on-surface hover:text-primary font-bold px-8 py-4 rounded-xl transition-all text-center">
+        Voir comment ça marche
+      </a>
+    </div>
+    <div class="flex items-center gap-2 text-xs font-semibold text-on-surface border-t border-outline pt-4">
+      <span class="material-symbols-outlined text-primary text-[16px]">verified</span> Inscription 100% gratuite • Visite terrain 72h • Tout téléphone
+    </div>
+  </div>
+  
+  <div class="relative w-full aspect-square rounded-[2rem] overflow-hidden shadow-2xl">
+    <img src="authentic_artisan.png" alt="Ouvrier qualifié at work" class="w-full h-full object-cover"/>
+    <!-- Required Floating Badges -->
+    <div class="absolute top-6 right-6 bg-white p-3 rounded-xl shadow border border-outline"><span class="font-bold text-sm text-primary flex items-center gap-2"><span class="material-symbols-outlined">verified</span> Vérifié en personne</span></div>
+    <div class="absolute bottom-6 left-6 bg-white p-3 rounded-xl shadow border border-outline"><span class="font-bold text-sm text-gold flex items-center gap-2"><span class="material-symbols-outlined icon-filled">payments</span> Paiement en 48h</span></div>
+  </div>
+</section>
+
+<!-- ONBOARDING ZERO FRICTION -->
+<section class="max-w-7xl mx-auto px-6 py-16" data-aos="fade-up">
+  <div class="bg-primary text-white rounded-[2rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+    <!-- Background Decor -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-48 h-48 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+    
+    <div class="relative z-10 text-center mb-12">
+      <div class="chip bg-white/20 text-white mb-4 border border-white/30 hidden md:inline-flex">Zéro paperasse • 100% WhatsApp</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Inscription Rapide en 3 Minutes</h2>
+      <p class="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">Pas de grands formulaires ni de CV complexes à remplir. Votre téléphone suffit, que vous soyez femme ou homme, ouvrier qualifié expérimenté ou maître d'œuvre.</p>
+    </div>
+
+    <div class="relative z-10 grid md:grid-cols-3 gap-8">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-[2rem] flex flex-col items-center text-center">
+        <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center mb-6 shadow-lg"><span class="material-symbols-outlined text-[36px]">chat</span></div>
+        <h3 class="font-bold text-xl mb-3">1. Écrivez-nous</h3>
+        <p class="text-sm text-white/80">Cliquez sur notre lien WhatsApp. Le robot d'accueil vous dira <strong>« Bonjour ! Bienvenue chez FasoSmart »</strong> et vous demandera votre métier.</p>
+      </div>
+      
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-[2rem] flex flex-col items-center text-center relative">
+        <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center mb-6 shadow-lg"><span class="material-symbols-outlined text-[36px]">id_card</span></div>
+        <h3 class="font-bold text-xl mb-3">2. Photo CNIB</h3>
+        <p class="text-sm text-white/80">Prenez simplement en photo le <strong>Recto et le Verso de votre Carte d'Identité</strong> avec votre téléphone. C'est pour la sécurité de tous.</p>
+      </div>
+
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-[2rem] flex flex-col items-center text-center relative">
+        <div class="w-20 h-20 rounded-full bg-[#EBF5E8] text-primary flex items-center justify-center mb-6 shadow-lg ring-4 ring-white"><span class="material-symbols-outlined text-[36px]">mic</span></div>
+        <h3 class="font-bold text-xl mb-3">3. Note Vocale !</h3>
+        <p class="text-sm text-white/80">Pas besoin de taper au clavier ! Faites un rapide <strong>message vocal</strong> pour dire où vous habitez et décrire vos chantiers. Nous vous rappelons ensuite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 4-TIER STAR SYSTEM -->
+<section class="bg-surface-low py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold mb-4">Votre réputation grandit avec chaque travail.</h2>
+      <p class="text-on-muted">4 Niveaux de confiance. Seul le travail décide. Aucune nomination, aucun piston.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Tier 1 -->
+      <div class="base-card bg-white border-t-4 border-t-on-muted rounded-2xl relative overflow-hidden h-full flex flex-col">
+        <div class="chip bg-surface-mid text-on-muted mb-4 block w-fit">Niveau 1 • Membre</div>
+        <div class="flex gap-1 text-gold mb-2"><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined text-outline">star</span></div>
+        <h3 class="font-bold text-2xl mb-4">Membre</h3>
+        <p class="text-sm text-on-muted mb-6 flex-grow">Profil créé avec photo. Visible dans les recherches locales.</p>
+        <ul class="space-y-2 text-sm text-on-surface mb-6 border-b border-outline pb-6">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Profil public actif</li>
+          <li class="flex items-center gap-2 text-on-muted opacity-50"><span class="material-symbols-outlined text-[18px]">close</span> Paiement dépôt de garantie</li>
+        </ul>
+        <p class="text-xs font-bold text-primary italic">Pour progresser : passez la visite terrain.</p>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="base-card bg-white border-primary border-2 border-t-[8px] rounded-2xl relative overflow-hidden h-full flex flex-col shadow-xl">
+        <div class="chip bg-primary-light text-primary mb-4 block w-fit">Vérifié ✓</div>
+        <div class="flex gap-1 text-gold mb-2"><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span></div>
+        <h3 class="font-bold text-2xl mb-4">Vérifié</h3>
+        <p class="text-sm text-on-muted mb-6 flex-grow">Identité et compétences confirmées par notre agent terrain.</p>
+        <ul class="space-y-2 text-sm justify-end mb-6 border-b border-outline pb-6">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px] font-bold">check</span> Badge visible à tous</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px] font-bold">check</span> Paiement dépôt de garantie activé</li>
+        </ul>
+        <p class="text-xs font-bold text-primary italic">Pour progresser : 5 travaux, note client ≥4/5.</p>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="base-card bg-white border-t-4 border-t-orange-500 rounded-2xl relative overflow-hidden h-full flex flex-col">
+        <div class="chip bg-primary-light text-primary mb-4 block w-fit">Confirmé</div>
+        <div class="flex gap-1 text-gold mb-2 drop-shadow-md"><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span></div>
+        <h3 class="font-bold text-2xl mb-4">Confirmé</h3>
+        <p class="text-sm text-on-muted mb-6 flex-grow">Historique documenté. Accès déverrouillé aux clients diaspora.</p>
+        <ul class="space-y-2 text-sm justify-end mb-6 border-b border-outline pb-6">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Clients Diaspora</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[18px]">check</span> Score crédit ouvrier</li>
+        </ul>
+        <p class="text-xs font-bold text-primary italic">Pour progresser : 20 travaux, note ≥4.5/5.</p>
+      </div>
+
+      <!-- Tier 4 -->
+      <div class="base-card bg-[#1C1C1C] text-white border-t-4 border-t-gold rounded-2xl relative overflow-hidden h-full flex flex-col shadow-2xl">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-gold/20 blur-[50px] rounded-full pointer-events-none"></div>
+        <div class="chip bg-gold text-[#1C1C1C] mb-4 block w-fit shadow-md">ProSûr FasoSmart</div>
+        <div class="flex gap-1 text-gold mb-2 drop-shadow-[0_0_8px_rgba(184,134,11,0.8)]"><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span><span class="material-symbols-outlined icon-filled">star</span></div>
+        <h3 class="font-bold text-2xl mb-4 text-white">ProSûr</h3>
+        <p class="text-sm text-white/70 mb-6 flex-grow">Historique parfait sur plusieurs années. Appels d'offres ONG.</p>
+        <ul class="space-y-2 text-sm text-gold justify-end mb-6 border-b border-white/20 pb-6">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Priorité absolue</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">check</span> Appels d'offres PME</li>
+        </ul>
+        <p class="text-xs font-bold text-white/50">Seul le travail décide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY CARD -->
+<section class="max-w-4xl mx-auto px-6 py-16 text-center">
+  <div class="base-card bg-white border-2 border-primary">
+    <span class="material-symbols-outlined text-primary text-[40px] mb-4">payments_ok</span>
+    <h3 class="font-extrabold text-2xl mb-4">C'est 100% Gratuit pour vous.</h3>
+    <div class="bg-primary/10 text-primary font-bold px-4 py-3 rounded-xl mb-6 inline-block">La commission est payée par le client.</div>
+    <p class="text-on-muted mb-6">FasoSmart ne vous prélève rien sur votre devis. Vous déposez votre devis, et vous recevez exactement cette somme sur votre compte Orange Money ou Wave. L'inscription est gratuite, aucun abonnement, aucun frais mensuel. Travaillez l'esprit tranquille.</p>
+  </div>
+</section>
+
+<script src="global.js"></script>
+</body>
+</html>

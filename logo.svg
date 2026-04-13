@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Green base circle -->
+  <circle cx="24" cy="24" r="23" fill="#1B650C"/>
+  <!-- Orange organic leaf / D-shape (left half) -->
+  <path d="M24 5 C24 5 11 11 10 24 C9 35 15 43 24 43 Z" fill="#FF8730"/>
+  <!-- Circuit triangle nodes (white) -->
+  <circle cx="21" cy="20" r="2.8" fill="white"/>
+  <circle cx="30" cy="20" r="2.8" fill="white"/>
+  <circle cx="25.5" cy="30" r="2.8" fill="white"/>
+  <!-- Circuit connecting lines -->
+  <line x1="21" y1="20" x2="30" y2="20" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="21" y1="20" x2="25.5" y2="30" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="30" y1="20" x2="25.5" y2="30" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

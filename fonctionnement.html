@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Comment ça marche | Dounya FasoSmart</title>
+<meta name="description" content="Comprenez exactement comment le processus d'dépôt de garantie et de vérification FasoSmart fonctionne.">
+<!-- CSP commented out for local dev -->
+<meta property="og:title" content="Comment ça marche | ProSûr Marketplace">
+<link rel="manifest" href="manifest.json">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0..1&display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: { extend: { colors: {
+    "primary":"#1B650C", "primary-dark":"#144D09", "primary-light":"#EBF5E8",
+    "surface":"#FAF9F5", "surface-low":"#F5F3EC", "surface-mid":"#EEEADE",
+    "on-surface":"#1C1C1C", "on-muted":"#535353", "outline":"#DEDCD4", "error":"#BA1A1A",
+  }, fontFamily: { display:["Poppins"], body:["Inter"] } } }
+}
+</script>
+<style>
+        .material-symbols-outlined { font-family: "Material Symbols Outlined" !important; font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24; }
+
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  body { font-family: 'Inter', sans-serif; background-color: #FAF9F5; color: #1C1C1C; }
+  h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; line-height: 1.1; }
+  .grad-primary { background: linear-gradient(135deg, #1B650C 0%, #144D09 100%); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 9999px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .base-card { background: white; border: 1px solid #DEDCD4; border-radius: 24px; padding: 32px; transition: all 200ms ease; }
+</style>
+</head>
+<body class="overflow-x-hidden antialiased pt-24">
+
+<nav class="fixed top-0 w-full z-[100] bg-surface/95 backdrop-blur-md border-b border-outline py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="index.html" class="flex flex-col no-underline">
+          <img src="logo_refined.png" alt="Dounya FasoSmart" class="h-10">
+        </a>
+        <div class="hidden md:flex gap-8 font-body font-semibold text-sm items-center">
+          <a href="index.html" class="text-on-muted hover:text-primary transition-colors">Accueil</a>
+          <a href="fonctionnement.html" class="text-on-muted hover:text-primary transition-colors">Fonctionnement</a>
+          <div class="relative group">
+            <button class="text-on-muted hover:text-primary transition-colors flex items-center gap-1">Écosystèmes <span class="material-symbols-outlined text-sm">expand_more</span></button>
+            <div class="absolute top-full left-0 pt-4 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all z-50">
+              <div class="bg-white shadow-xl border border-gray-100 rounded-xl p-2 min-w-[220px]">
+                <a href="clients.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Clients Locaux</a>
+                <a href="diaspora.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Diaspora</a>
+                <a href="artisans.html" class="block px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface rounded-lg">Ouvriers qualifiés</a>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="text-on-muted hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="hidden md:flex items-center gap-6">
+          <div class="flex items-center gap-2 border border-outline rounded-full px-3 py-1 bg-white">
+            <span class="text-xs font-bold text-primary">FR</span>
+            <span class="text-outline text-xs">|</span>
+            <a href="en/index.html" class="text-xs font-bold text-on-muted hover:text-primary transition-colors">EN</a>
+          </div>
+          <label class="flex items-center cursor-pointer gap-2 title='Low Data Mode'">
+            <input type="checkbox" id="low-data-toggle" class="sr-only peer">
+            <span class="text-[0.65rem] font-bold uppercase tracking-wider text-on-muted">Mode éco.</span>
+            <div class="relative w-9 h-5 bg-outline rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
+          </label>
+        </div>
+        <button class="md:hidden text-primary"><span class="material-symbols-outlined text-3xl">menu</span></button>
+    </div>
+</nav>
+
+<section class="max-w-4xl mx-auto px-6 py-16 text-center">
+  <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Tout passe par WhatsApp et le terrain.</h1>
+  <p class="text-lg text-on-muted leading-relaxed">Ni application à télécharger, ni mot de passe à retenir. Une transparence totale basée sur la preuve visuelle.</p>
+</section>
+
+<!-- THE VISUAL PROCESS -->
+<section class="max-w-7xl mx-auto px-6 py-12" data-aos="fade-up">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Step 1 -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-outline hover:scale-105 transition-transform">
+      <img src="fonct_leak.png" class="w-full h-56 object-cover">
+      <div class="p-6">
+        <div class="chip bg-error/10 text-error mb-2">Plomberie</div>
+        <h3 class="font-bold text-lg mb-2">1. Le Problème</h3>
+        <p class="text-on-muted text-sm">Déclarez facilement l'urgence de n'importe quel domaine depuis votre téléphone.</p>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-outline hover:scale-105 transition-transform">
+      <img src="fonct_escrow_mason.png" class="w-full h-56 object-cover">
+      <div class="p-6">
+        <div class="chip bg-primary/10 text-primary mb-2">Maçonnerie</div>
+        <h3 class="font-bold text-lg mb-2">2. Le Dépôt de garantie</h3>
+        <p class="text-on-muted text-sm">Bloquez l'argent en toute sécurité. Les ouvriers se mettent au boulot.</p>
+      </div>
+    </div>
+    <!-- Step 3 -->
+    <div class="bg-white rounded-2xl overflow-hidden shadow-xl border border-outline hover:scale-105 transition-transform">
+      <img src="fonct_resolution_elec.png" class="w-full h-56 object-cover">
+      <div class="p-6">
+        <div class="chip bg-[#B8860B]/10 text-[#B8860B] mb-2">Électricité</div>
+        <h3 class="font-bold text-lg mb-2">3. La Résolution</h3>
+        <p class="text-on-muted text-sm">Confirmez que le travail est bien fait face à l'ouvrier qualifié. L'argent est libéré.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- THE REFERENCE ID EXPLAINER -->
+<section class="max-w-5xl mx-auto px-6 py-12">
+  <div class="base-card bg-[#1C1C1C] text-white border-none flex flex-col md:flex-row items-center gap-12 shadow-2xl">
+    <div>
+      <div class="chip bg-white/10 text-white mb-4">Architecture de confiance</div>
+      <h2 class="text-3xl font-bold mb-4">L'ID de Référence</h2>
+      <p class="text-white/70 mb-4 block">Chaque demande passée depuis ce site génère un code unique. Ce code lie mathématiquement votre devis, votre paiement dépôt de garantie Orange Money ou Wave, et notre surveillance terrain.</p>
+      <div class="bg-white/5 border border-white/20 font-mono text-xl p-4 rounded-xl inline-block font-bold mt-2">
+        <span class="text-primary-light/50">#DS-</span><span class="text-white">PRO</span><span class="text-primary-light/50">-26-</span><span class="text-primary">0047</span>
+      </div>
+      <p class="text-white/60 text-xs mt-4"><em>Sécurité B2B : Dès la génération, cet ID est également enregistré dans nos bases de données WhatsApp pour vous retracer instantanément lors de tout appel ou litige, vous garantissant un suivi infaillible.</em></p>
+    </div>
+    <!-- Simple Mock UI button generated by JS -->
+    <div class="w-full md:w-auto bg-[#25D366]/10 p-6 rounded-2xl border border-[#25D366]/30 text-center text-[#25D366]">
+      <span class="material-symbols-outlined text-[40px] mb-2">smartphone</span>
+      <p class="text-sm font-bold">Injecté dans votre WhatsApp</p>
+    </div>
+  </div>
+</section>
+
+<!-- STEP-BY-STEP (Simulating multiple audiences using vertical scrolling blocks instead of JS tabs for foolproof simplicity) -->
+<section class="max-w-5xl mx-auto px-6 py-16 grid grid-cols-1 gap-24">
+  
+  <!-- Clients Locaux -->
+  <div>
+    <h2 class="text-3xl font-extrabold mb-8 border-b-4 border-primary pb-2 inline-block">1. Pour les Clients Locaux</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+          <div><h4 class="font-bold text-lg mb-1">Demande & Dépôt</h4><p class="text-sm text-on-muted">Inscrivez-vous et déposez un acompte initial pour qu'un ouvrier qualifié soit déployé à votre position.</p></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+          <div><h4 class="font-bold text-lg mb-1">Devis sur place</h4><p class="text-sm text-on-muted">Le pro arrive, évalue le travail et soumet le devis complet sur la plateforme après discussion avec vous.</p></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+          <div><h4 class="font-bold text-lg mb-1">Dépôt de garantie & Travaux</h4><p class="text-sm text-on-muted">Vous validez le devis et bloquez les fonds totaux (Dépôt de garantie). Le ouvrier qualifié exécute le travail.</p></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
+          <div><h4 class="font-bold text-lg mb-1">Validation & Paiement</h4><p class="text-sm text-on-muted">Le ouvrier qualifié envoie des photos/vidéos. Vous confirmez la fin du chantier, et FasoSmart débloque les fonds.</p></div>
+        </div>
+      </div>
+      <!-- WhatsApp Preview Client -->
+      <div class="bg-[#e1ffc7] p-4 rounded-xl shadow-lg border border-gray-200">
+        <p class="text-[0.65rem] font-bold text-[#075e54] uppercase tracking-widest mb-1">Pré-rempli automatiquement</p>
+        <p class="text-sm text-gray-800">"Bonjour, je cherche un ouvrier qualifié pour un problème de plomberie à Ouaga2000. Référence : #DS-PRO-26-8812"</p>
+        <a href="https://wa.me/22625300000?text=Bonjour%2C%20je%20cherche%20un%20artisan.%20R%C3%A9f%C3%A9rence%20%3A%20%23DS-PRO-26-XXXX" data-requires-ref="true" target="_blank" class="block w-full text-center bg-[#25D366] text-white font-bold py-2 mt-4 rounded-lg shadow cursor-pointer">Essayer</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ouvriers qualifiés -->
+  <div>
+    <h2 class="text-3xl font-extrabold mb-8 border-b-4 border-gold pb-2 inline-block">2. Pour les Ouvriers qualifiés</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- WhatsApp Preview Ouvrier qualifié -->
+      <div class="order-2 md:order-1 bg-[#e1ffc7] p-4 rounded-xl shadow-lg border border-gray-200">
+        <p class="text-[0.65rem] font-bold text-[#075e54] uppercase tracking-widest mb-1">Pré-rempli automatiquement</p>
+        <p class="text-sm text-gray-800">"Je veux m'inscrire comme ouvrier qualifié sur FasoSmart. Je suis Maçon."</p>
+        <a href="https://wa.me/22625300000?text=Je%20veux%20m%27inscrire%20comme%20artisan%20sur%20FasoSmart" target="_blank" class="block w-full text-center bg-[#25D366] text-white font-bold py-2 mt-4 rounded-lg shadow cursor-pointer">Débuter l'inscription</a>
+      </div>
+      <div class="space-y-6 order-1 md:order-2">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+          <div><h4 class="font-bold text-lg mb-1">Premier mois Gratuit</h4><p class="text-sm text-on-muted">Inscrivez-vous sans frais pour tester la plateforme. Passez ensuite sur un modèle d'abonnement abordable.</p></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+          <div><h4 class="font-bold text-lg mb-1">Vérification & Visibilité</h4><p class="text-sm text-on-muted">FasoSmart vérifie vos compétences. Votre "notoriété" s'améliore à chaque avis client et référence.</p></div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-full bg-gold text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+          <div><h4 class="font-bold text-lg mb-1">Gagnez des contrats</h4><p class="text-sm text-on-muted">Nous vous fournissons le volume. Vous exécutez le travail parfaitement. L'argent est bloqué à l'avance et libéré dès confirmation.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ once: true });</script>
+<script src="global.js"></script>
+</body>
+</html>
